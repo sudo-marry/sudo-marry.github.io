@@ -1,6 +1,620 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="format-detection" content="telephone=no" />
+  <title>모바일 청첩장</title>
+
+  <style>
+    /* ====== Mobile-only, slim & long ====== */
+    :root{
+      --w: 420px;                 /* 슬림 폭 */
+      --bg: #fbf7f4;
+      --card: rgba(255,255,255,.75);
+      --line: rgba(20,18,16,.10);
+      --text: #1d1a18;
+      --muted: rgba(29,26,24,.60);
+      --accent: #d7a98a;          /* 샴페인 톤 */
+      --accent2:#a9b8c9;          /* 블루그레이 */
+      --shadow: 0 18px 40px rgba(20,18,16,.10);
+      --r: 22px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      color:var(--text);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic", sans-serif;
+      background:
+        radial-gradient(1200px 700px at 30% -10%, rgba(215,169,138,.25), transparent 60%),
+        radial-gradient(900px 520px at 90% 10%, rgba(169,184,201,.20), transparent 55%),
+        var(--bg);
+      letter-spacing: -.2px;
+    }
+    a{color:inherit; text-decoration:none}
+    .page{
+      width: min(var(--w), 100%);
+      margin: 0 auto;
+      padding: 16px 14px 26px;
+    }
+
+    /* top subtle frame */
+    .frame{
+      border: 1px solid rgba(20,18,16,.06);
+      border-radius: 28px;
+      padding: 12px;
+      background: rgba(255,255,255,.25);
+      backdrop-filter: blur(6px);
+    }
+
+    /* cards */
+    .card{
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      background: var(--card);
+      box-shadow: var(--shadow);
+      padding: 16px;
+      margin: 14px 0;
+    }
+
+    /* Hero */
+    .hero{
+      border-radius: 28px;
+      overflow:hidden;
+      position:relative;
+      border: 1px solid rgba(20,18,16,.12);
+      box-shadow: var(--shadow);
+      background: #eee;
+      margin: 6px 0 16px;
+    }
+    .hero img{
+      width:100%;
+      height: 520px; /* 길게 */
+      object-fit: cover;
+      display:block;
+      filter: saturate(1.02) contrast(1.02);
+    }
+    .hero::after{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.00) 45%, rgba(0,0,0,.50) 100%),
+        radial-gradient(800px 360px at 50% 25%, rgba(255,255,255,.12), transparent 55%);
+      pointer-events:none;
+    }
+    .heroText{
+      position:absolute;
+      left: 16px;
+      right: 16px;
+      bottom: 18px;
+      color: rgba(255,255,255,.96);
+      text-shadow: 0 10px 25px rgba(0,0,0,.35);
+    }
+    .heroBadge{
+      display:inline-flex; align-items:center; gap:8px;
+      font-size: 12px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.22);
+      background: rgba(0,0,0,.18);
+      backdrop-filter: blur(6px);
+      margin-bottom: 10px;
+    }
+    .heroTitle{
+      margin:0;
+      font-size: 30px;
+      letter-spacing:-.6px;
+      line-height:1.2;
+    }
+    .heroSub{
+      margin: 8px 0 0;
+      font-size: 14px;
+      opacity:.92;
+    }
+
+    /* Section titles */
+    .h2{
+      display:flex; align-items:center; justify-content:space-between;
+      margin:0 0 10px;
+      font-size: 16px;
+      letter-spacing:-.3px;
+    }
+    .h2 small{font-weight:500; color:var(--muted)}
+    .muted{color:var(--muted)}
+    .sep{
+      height: 1px;
+      background: rgba(20,18,16,.08);
+      margin: 12px 0;
+    }
+
+    /* Names / date */
+    .names{
+      display:flex;
+      gap: 10px;
+      align-items:baseline;
+      justify-content:center;
+      margin-top: 2px;
+      font-size: 16px;
+    }
+    .names strong{font-weight:800}
+    .dot{opacity:.5}
+    .center{text-align:center}
+    .bigDate{
+      font-size: 18px;
+      font-weight:800;
+      margin: 10px 0 6px;
+    }
+    .place{
+      font-size: 14px;
+      color:var(--muted);
+      margin: 0 0 8px;
+    }
+
+    /* Buttons */
+    .btnRow{display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top: 12px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:8px;
+      padding: 11px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(20,18,16,.12);
+      background: rgba(255,255,255,.65);
+      box-shadow: 0 10px 18px rgba(20,18,16,.08);
+      font-size: 13px;
+      user-select:none;
+      cursor:pointer;
+      transition: transform .06s ease, background .15s ease;
+    }
+    .btn:active{transform: translateY(1px)}
+    .btn.primary{
+      border-color: rgba(215,169,138,.45);
+      background: rgba(215,169,138,.20);
+    }
+
+    /* Calendar */
+    .calWrap{padding: 10px 8px 4px}
+    .calTop{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:10px; margin-bottom: 8px;
+    }
+    .calTop .title{font-weight:900; letter-spacing:-.4px}
+    .calTop .mini{font-size:12px; color:var(--muted)}
+    .calGrid{display:grid; grid-template-columns: repeat(7, 1fr); gap: 8px}
+    .dow{font-size:11px; text-align:center; color:var(--muted); padding: 4px 0}
+    .day{
+      height: 44px;
+      border-radius: 14px;
+      border: 1px solid rgba(20,18,16,.10);
+      background: rgba(255,255,255,.55);
+      display:flex; align-items:center; justify-content:center;
+      font-size: 13px;
+      position:relative;
+    }
+    .day.off{opacity:.35; background: rgba(255,255,255,.35)}
+    .day.sun{color:#c46b6b}
+    .day.sat{color:#557aa8}
+    .day.target{
+      border-color: rgba(215,169,138,.70);
+      background: rgba(215,169,138,.22);
+      box-shadow: 0 0 0 3px rgba(215,169,138,.12) inset;
+      font-weight:900;
+    }
+    .day.target::after{
+      content:"D-DAY";
+      position:absolute;
+      bottom: 5px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 9px;
+      padding: 2px 6px;
+      border-radius: 999px;
+      color: rgba(29,26,24,.82);
+      background: rgba(255,255,255,.78);
+      border: 1px solid rgba(20,18,16,.10);
+    }
+
+    /* Map */
+    #map{
+      width:100%;
+      height: 320px;
+      border-radius: 20px;
+      border: 1px solid rgba(20,18,16,.12);
+      overflow:hidden;
+      background: rgba(255,255,255,.55);
+    }
+
+    /* Gallery */
+    .gallery{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .ph{
+      border-radius: 18px;
+      border: 1px solid rgba(20,18,16,.10);
+      background: rgba(255,255,255,.50);
+      overflow:hidden;
+      aspect-ratio: 1/1;
+      position:relative;
+    }
+    .ph img{width:100%; height:100%; object-fit:cover; display:block}
+    .ph::after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, rgba(0,0,0,0) 60%, rgba(0,0,0,.18));
+      pointer-events:none;
+    }
+
+    /* Accordion */
+    details{
+      border: 1px solid rgba(20,18,16,.10);
+      border-radius: 18px;
+      padding: 12px 12px;
+      background: rgba(255,255,255,.55);
+    }
+    summary{
+      cursor:pointer;
+      font-weight:800;
+      list-style:none;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+    summary::-webkit-details-marker{display:none}
+    .accBody{
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height:1.55;
+    }
+    .accRow{display:flex; gap:10px; flex-wrap:wrap; margin-top: 10px}
+    .copy{
+      padding: 10px 11px;
+      border-radius: 14px;
+      border: 1px solid rgba(20,18,16,.12);
+      background: rgba(255,255,255,.70);
+      cursor:pointer;
+      font-size: 13px;
+    }
+
+    /* Footer */
+    .foot{
+      text-align:center;
+      color: var(--muted);
+      font-size: 12px;
+      padding: 18px 0 6px;
+    }
+
+    /* Toast */
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(29,26,24,.86);
+      color: rgba(255,255,255,.95);
+      border: 1px solid rgba(255,255,255,.15);
+      font-size: 13px;
+      opacity: 0;
+      pointer-events:none;
+      transition: opacity .18s ease, transform .18s ease;
+      z-index: 9999;
+    }
+    .toast.show{opacity:1; transform: translateX(-50%) translateY(-4px)}
+  </style>
+</head>
+
 <body>
-<h1>Hello World</h1>
+  <div class="page">
+    <div class="frame">
+
+      <!-- HERO (세로로 길게) -->
+      <section class="hero">
+        <!-- 표지 사진 교체 -->
+        <img src="src/image/main.png" alt="cover" />
+        <!-- <div class="heroText">
+          <div class="heroBadge">🤍 Save the date</div>
+          <h1 class="heroTitle">우리 결혼합니다</h1>
+          <p class="heroSub" id="heroSubText">2026. 8. 22 · 토 · 17:00</p>
+        </div> -->
+      </section>
+
+      <!-- INTRO -->
+      <section class="card center">
+        <div class="names">
+          <div><strong id="groomName">신랑</strong> <span id="groom">김산</span></div>
+          <div class="dot">·</div>
+          <div><strong id="brideName">신부</strong> <span id="bride">강하나</span></div>
+        </div>
+
+        <div class="bigDate" id="dateText">2026년 8월 22일 (토) 오후 5:00</div>
+        <p class="place" id="venueText">고려대학교 교우회관</p>
+
+        <div class="btnRow">
+          <a class="btn primary" href="#location">📍 오시는 길</a>
+          <button class="btn" type="button" id="copyAddrTop">📋 주소 복사</button>
+        </div>
+
+        <div class="sep"></div>
+
+        <p class="muted" style="margin:0">
+          소중한 분들을 모시고<br/>
+          사랑의 서약을 하려 합니다.<br/>
+          함께해 주시면 큰 기쁨이겠습니다.
+        </p>
+      </section>
+
+      <!-- CALENDAR -->
+      <section class="card">
+        <div class="h2">
+          <div>📅 일정</div>
+          <small class="muted">달력에 저장</small>
+        </div>
+        <div class="calWrap">
+          <div class="calTop">
+            <div>
+              <div class="title" id="calTitle">2026년 8월</div>
+              <div class="mini" id="calMini">선택된 날짜가 강조 표시됩니다</div>
+            </div>
+            <div style="display:flex; gap:8px">
+              
+              <!-- <a class="btn" id="gcalBtn" target="_blank" rel="noreferrer">Google</a> -->
+            </div>
+          </div>
+
+          <div class="calGrid" id="calDow"></div>
+          <div class="calGrid" id="calDays"></div>
+        </div>
+      </section>
+
+      <!-- LOCATION / NAVER MAP -->
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3161.4315447708477!2d127.03307907686558!3d37.592001422665845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357cbcbc8d707a77%3A0x195d6ec549202318!2z6rOg66Ck64yA7ZWZ6rWQIOq1kOyasO2ajOq0gA!5e0!3m2!1sko!2skr!4v1771597582009!5m2!1sko!2skr" width="360" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+      <!-- GALLERY -->
+      <section class="card">
+        <div class="h2">
+          <div>🖼️ 갤러리</div>
+          <small class="muted">사진은 교체하세요</small>
+        </div>
+        <div class="gallery">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=900&q=80" alt="g1"></div>
+          <div class="ph"><img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=900&q=80" alt="g2"></div>
+          <div class="ph"><img src="https://images.unsplash.com/photo-1523438097201-dc6f00f3e409?auto=format&fit=crop&w=900&q=80" alt="g3"></div>
+          <div class="ph"><img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=900&q=80" alt="g4"></div>
+        </div>
+        <div class="sep"></div>
+        <div class="muted" style="font-size:13px">
+          팁: 사진은 가로/세로 1000px 내외로 리사이즈하면 로딩이 빨라요.
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="card">
+        <div class="h2">
+          <div>📞 연락처</div>
+          <small class="muted">클릭하면 전화</small>
+        </div>
+        <div class="btnRow">
+          <a class="btn primary" id="callGroom" href="tel:010-1234-5678">신랑에게</a>
+          <a class="btn" id="callBride" href="tel:010-9876-5432">신부에게</a>
+        </div>
+      </section>
+
+      <!-- MONEY (Accordion) -->
+      <section class="card">
+        <div class="h2">
+          <div>💌 마음 전하실 곳</div>
+          <small class="muted">계좌 복사</small>
+        </div>
+
+        <div style="display:grid; gap:10px">
+          <details>
+            <summary>신랑측 계좌 <span class="muted">▾</span></summary>
+            <div class="accBody">
+              OO은행 123-456-789012<br/>
+              예금주: 홍길동
+              <div class="accRow">
+                <button class="copy" type="button" data-copy="OO은행 123-456-789012 (예금주: 홍길동)">📋 복사</button>
+              </div>
+            </div>
+          </details>
+
+          <details>
+            <summary>신부측 계좌 <span class="muted">▾</span></summary>
+            <div class="accBody">
+              OO은행 987-654-321098<br/>
+              예금주: 김영희
+              <div class="accRow">
+                <button class="copy" type="button" data-copy="OO은행 987-654-321098 (예금주: 김영희)">📋 복사</button>
+              </div>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <div class="foot">
+        © <span id="yy"></span> Wedding Invitation · Made for mobile
+      </div>
+
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    /********************************************************
+     * 0) 여기만 바꾸면 전체가 바뀝니다
+     ********************************************************/
+    const CONFIG = {
+      groom: "김산",
+      bride: "강하나",
+      datetime: { year: 2026, month: 8, day: 22, hour: 17, minute: 0 },
+      venue: "고려대학교 교우회관",
+      address: "서울특별시 성북구 종암동 29-26",
+    };
+
+    /********************************************************
+     * utils
+     ********************************************************/
+    const DOW = ["일","월","화","수","목","금","토"];
+    const pad2 = (n)=>String(n).padStart(2,"0");
+    function toast(msg){
+      const t = document.getElementById("toast");
+      t.textContent = msg;
+      t.classList.add("show");
+      clearTimeout(t._h);
+      t._h = setTimeout(()=>t.classList.remove("show"), 1500);
+    }
+    async function copyText(text){
+      try{
+        await navigator.clipboard.writeText(text);
+        toast("복사했어요!");
+      }catch{
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        ta.remove();
+        toast("복사했어요!");
+      }
+    }
+
+    /********************************************************
+     * 1) bind text
+     ********************************************************/
+    const dt = new Date(
+      CONFIG.datetime.year,
+      CONFIG.datetime.month-1,
+      CONFIG.datetime.day,
+      CONFIG.datetime.hour,
+      CONFIG.datetime.minute,
+      0
+    );
+
+    const ampm = CONFIG.datetime.hour >= 12 ? "오후" : "오전";
+    const hour12 = (CONFIG.datetime.hour % 12) === 0 ? 12 : (CONFIG.datetime.hour % 12);
+    const dateLine =
+      `${CONFIG.datetime.year}년 ${CONFIG.datetime.month}월 ${CONFIG.datetime.day}일 (${DOW[dt.getDay()]}) ` +
+      `${ampm} ${hour12}:${pad2(CONFIG.datetime.minute)}`;
+
+    document.getElementById("groom").textContent = CONFIG.groom;
+    document.getElementById("bride").textContent = CONFIG.bride;
+    document.getElementById("dateText").textContent = dateLine;
+    document.getElementById("venueText").textContent = CONFIG.venue;
+    document.getElementById("venueText2").textContent = CONFIG.venue;
+    document.getElementById("addrText").textContent = CONFIG.address;
+    document.getElementById("heroSubText").textContent =
+      `${CONFIG.datetime.year}. ${pad2(CONFIG.datetime.month)}. ${pad2(CONFIG.datetime.day)} · ${DOW[dt.getDay()]} · ${pad2(CONFIG.datetime.hour)}:${pad2(CONFIG.datetime.minute)}`;
+    document.getElementById("yy").textContent = new Date().getFullYear();
+
+    // map links
+    const enc = encodeURIComponent(CONFIG.address);
+    const naverSearch = `https://map.naver.com/v5/search/${enc}`;
+    const kakaoSearch = `https://map.kakao.com/link/search/${enc}`;
+    document.getElementById("naverOpen").href = naverSearch;
+    document.getElementById("kakaoOpen").href = kakaoSearch;
+    document.getElementById("naverRoute").href = naverSearch;
+    document.getElementById("kakaoRoute").href = kakaoSearch;
+
+    // copy handlers
+    document.getElementById("copyAddrTop").addEventListener("click", ()=>copyText(CONFIG.address));
+    document.getElementById("copyAddrBottom").addEventListener("click", ()=>copyText(CONFIG.address));
+    document.querySelectorAll("[data-copy]").forEach(el=>{
+      el.addEventListener("click", ()=>copyText(el.getAttribute("data-copy")));
+    });
+
+    /********************************************************
+     * 2) calendar render
+     ********************************************************/
+    const calTitle = document.getElementById("calTitle");
+    const calDow = document.getElementById("calDow");
+    const calDays = document.getElementById("calDays");
+    calTitle.textContent = `${CONFIG.datetime.year}년 ${CONFIG.datetime.month}월`;
+
+    DOW.forEach((w,i)=>{
+      const el = document.createElement("div");
+      el.className = "dow";
+      el.textContent = w;
+      calDow.appendChild(el);
+    });
+
+    const y = CONFIG.datetime.year;
+    const m = CONFIG.datetime.month;
+    const targetDay = CONFIG.datetime.day;
+
+    const first = new Date(y, m-1, 1);
+    const last = new Date(y, m, 0);
+    const startDow = first.getDay();
+    const totalDays = last.getDate();
+
+    for(let i=0;i<startDow;i++){
+      const el = document.createElement("div");
+      el.className = "day off";
+      el.textContent = "";
+      calDays.appendChild(el);
+    }
+
+    for(let day=1; day<=totalDays; day++){
+      const d0 = new Date(y, m-1, day);
+      const el = document.createElement("div");
+      el.className = "day";
+      if(d0.getDay()===0) el.classList.add("sun");
+      if(d0.getDay()===6) el.classList.add("sat");
+      if(day===targetDay) el.classList.add("target");
+      el.textContent = day;
+      calDays.appendChild(el);
+    }
+
+    /********************************************************
+     * 3) calendar export (ics + google)
+     ********************************************************/
+    function makeICS(startLocal){
+      // UTC 변환
+      const startUtc = new Date(startLocal.getTime() - startLocal.getTimezoneOffset()*60000);
+      const endUtc = new Date(startUtc.getTime() + 60*60*1000);
+
+      const fmt = (x)=>`${x.getUTCFullYear()}${pad2(x.getUTCMonth()+1)}${pad2(x.getUTCDate())}T${pad2(x.getUTCHours())}${pad2(x.getUTCMinutes())}${pad2(x.getUTCSeconds())}Z`;
+
+      const uid = `wedding-${Date.now()}@github.io`;
+      return [
+        "BEGIN:VCALENDAR",
+        "VERSION:2.0",
+        "PRODID:-//Wedding Invite//KR//EN",
+        "CALSCALE:GREGORIAN",
+        "METHOD:PUBLISH",
+        "BEGIN:VEVENT",
+        `UID:${uid}`,
+        `DTSTAMP:${fmt(new Date())}`,
+        `DTSTART:${fmt(startUtc)}`,
+        `DTEND:${fmt(endUtc)}`,
+        "SUMMARY:결혼식",
+        `LOCATION:${CONFIG.venue} (${CONFIG.address})`,
+        "DESCRIPTION:결혼식에 초대합니다.",
+        "END:VEVENT",
+        "END:VCALENDAR"
+      ].join("\r\n");
+    }
+
+    const icsBlob = new Blob([makeICS(dt)], {type:"text/calendar;charset=utf-8"});
+    document.getElementById("icsBtn").href = URL.createObjectURL(icsBlob);
+
+    function googleCalLink(startLocal){
+      const endLocal = new Date(startLocal.getTime() + 60*60*1000);
+      const fmt = (x)=>{
+        const u = new Date(x.getTime() - x.getTimezoneOffset()*60000);
+        return `${u.getUTCFullYear()}${pad2(u.getUTCMonth()+1)}${pad2(u.getUTCDate())}T${pad2(u.getUTCHours())}${pad2(u.getUTCMinutes())}${pad2(u.getUTCSeconds())}Z`;
+      };
+      const dates = `${fmt(startLocal)}/${fmt(endLocal)}`;
+      const text = encodeURIComponent("결혼식");
+      const details = encodeURIComponent("결혼식에 초대합니다.");
+      const location = encodeURIComponent(`${CONFIG.venue} (${CONFIG.address})`);
+      return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${text}&dates=${dates}&details=${details}&location=${location}`;
+    }
+    document.getElementById("gcalBtn").href = googleCalLink(dt);
+  </script>
 </body>
 </html>
