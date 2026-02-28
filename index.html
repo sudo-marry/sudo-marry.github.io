@@ -1,346 +1,115 @@
-<!doctype html>
+`<!doctype html>
 <html lang="ko">
 <head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-K1DVG1S1N0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-K1DVG1S1N0');
+</script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="format-detection" content="telephone=no" />
   <title>모바일 청첩장</title>
 
+  <!-- Tailwind (CDN: 빠르게 편집/배포용) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
   <style>
-    /* ====== Mobile-only, slim & long ====== */
-    :root{
-      --w: 420px;                 /* 슬림 폭 */
-      --bg: #fbf7f4;
-      --card: rgba(255,255,255,.75);
-      --line: rgba(20,18,16,.10);
-      --text: #1d1a18;
-      --muted: rgba(29,26,24,.60);
-      --accent: #d7a98a;          /* 샴페인 톤 */
-      --accent2:#a9b8c9;          /* 블루그레이 */
-      --shadow: 0 18px 40px rgba(20,18,16,.10);
-      --r: 22px;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      color:var(--text);
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic", sans-serif;
-      background:
-        radial-gradient(1200px 700px at 30% -10%, rgba(215,169,138,.25), transparent 60%),
-        radial-gradient(900px 520px at 90% 10%, rgba(169,184,201,.20), transparent 55%),
-        var(--bg);
-      letter-spacing: -.2px;
-    }
-    a{color:inherit; text-decoration:none}
-    .page{
-      width: min(var(--w), 100%);
-      margin: 0 auto;
-      padding: 16px 14px 26px;
-    }
-
-    /* top subtle frame */
-    .frame{
-      border: 1px solid rgba(20,18,16,.06);
-      border-radius: 28px;
-      padding: 12px;
-      background: rgba(255,255,255,.25);
-      backdrop-filter: blur(6px);
-    }
-
-    /* cards */
-    .card{
-      border: 1px solid var(--line);
-      border-radius: var(--r);
-      background: var(--card);
-      box-shadow: var(--shadow);
-      padding: 16px;
-      margin: 14px 0;
-    }
-
-    /* Hero */
-    .hero{
-      border-radius: 28px;
-      overflow:hidden;
-      position:relative;
-      border: 1px solid rgba(20,18,16,.12);
-      box-shadow: var(--shadow);
-      background: #eee;
-      margin: 6px 0 16px;
-    }
-    .hero img{
-      width:100%;
-      height: 520px; /* 길게 */
-      object-fit: cover;
-      display:block;
-      filter: saturate(1.02) contrast(1.02);
-    }
-    .hero::after{
-      content:"";
-      position:absolute; inset:0;
-      background:
-        linear-gradient(180deg, rgba(0,0,0,.00) 45%, rgba(0,0,0,.50) 100%),
-        radial-gradient(800px 360px at 50% 25%, rgba(255,255,255,.12), transparent 55%);
-      pointer-events:none;
-    }
-    .heroText{
-      position:absolute;
-      left: 16px;
-      right: 16px;
-      bottom: 18px;
-      color: rgba(255,255,255,.96);
-      text-shadow: 0 10px 25px rgba(0,0,0,.35);
-    }
-    .heroBadge{
-      display:inline-flex; align-items:center; gap:8px;
-      font-size: 12px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.22);
-      background: rgba(0,0,0,.18);
-      backdrop-filter: blur(6px);
-      margin-bottom: 10px;
-    }
-    .heroTitle{
-      margin:0;
-      font-size: 30px;
-      letter-spacing:-.6px;
-      line-height:1.2;
-    }
-    .heroSub{
-      margin: 8px 0 0;
-      font-size: 14px;
-      opacity:.92;
-    }
-
-    /* Section titles */
-    .h2{
-      display:flex; align-items:center; justify-content:space-between;
-      margin:0 0 10px;
-      font-size: 16px;
-      letter-spacing:-.3px;
-    }
-    .h2 small{font-weight:500; color:var(--muted)}
-    .muted{color:var(--muted)}
-    .sep{
-      height: 1px;
-      background: rgba(20,18,16,.08);
-      margin: 12px 0;
-    }
-
-    /* Names / date */
-    .names{
-      display:flex;
-      gap: 10px;
-      align-items:baseline;
-      justify-content:center;
-      margin-top: 2px;
-      font-size: 16px;
-    }
-    .names strong{font-weight:800}
-    .dot{opacity:.5}
-    .center{text-align:center}
-    .bigDate{
-      font-size: 18px;
-      font-weight:800;
-      margin: 10px 0 6px;
-    }
-    .place{
-      font-size: 14px;
-      color:var(--muted);
-      margin: 0 0 8px;
-    }
-
-    /* Buttons */
-    .btnRow{display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top: 12px}
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:8px;
-      padding: 11px 12px;
-      border-radius: 14px;
-      border: 1px solid rgba(20,18,16,.12);
-      background: rgba(255,255,255,.65);
-      box-shadow: 0 10px 18px rgba(20,18,16,.08);
-      font-size: 13px;
-      user-select:none;
-      cursor:pointer;
-      transition: transform .06s ease, background .15s ease;
-    }
-    .btn:active{transform: translateY(1px)}
-    .btn.primary{
-      border-color: rgba(215,169,138,.45);
-      background: rgba(215,169,138,.20);
-    }
-
-    /* Calendar */
-    .calWrap{padding: 10px 8px 4px}
-    .calTop{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:10px; margin-bottom: 8px;
-    }
-    .calTop .title{font-weight:900; letter-spacing:-.4px}
-    .calTop .mini{font-size:12px; color:var(--muted)}
-    .calGrid{display:grid; grid-template-columns: repeat(7, 1fr); gap: 8px}
-    .dow{font-size:11px; text-align:center; color:var(--muted); padding: 4px 0}
-    .day{
-      height: 44px;
-      border-radius: 14px;
-      border: 1px solid rgba(20,18,16,.10);
-      background: rgba(255,255,255,.55);
-      display:flex; align-items:center; justify-content:center;
-      font-size: 13px;
-      position:relative;
-    }
-    .day.off{opacity:.35; background: rgba(255,255,255,.35)}
-    .day.sun{color:#c46b6b}
-    .day.sat{color:#557aa8}
-    .day.target{
-      border-color: rgba(215,169,138,.70);
-      background: rgba(215,169,138,.22);
-      box-shadow: 0 0 0 3px rgba(215,169,138,.12) inset;
-      font-weight:900;
-    }
-    .day.target::after{
-      content:"D-DAY";
-      position:absolute;
-      bottom: 5px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 9px;
-      padding: 2px 6px;
-      border-radius: 999px;
-      color: rgba(29,26,24,.82);
-      background: rgba(255,255,255,.78);
-      border: 1px solid rgba(20,18,16,.10);
-    }
-
-    /* Map */
-    #map{
-      width:100%;
-      height: 320px;
-      border-radius: 20px;
-      border: 1px solid rgba(20,18,16,.12);
-      overflow:hidden;
-      background: rgba(255,255,255,.55);
-    }
-
-    /* Gallery */
-    .gallery{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-    .ph{
-      border-radius: 18px;
-      border: 1px solid rgba(20,18,16,.10);
-      background: rgba(255,255,255,.50);
-      overflow:hidden;
-      aspect-ratio: 1/1;
-      position:relative;
-    }
-    .ph img{width:100%; height:100%; object-fit:cover; display:block}
-    .ph::after{
-      content:"";
-      position:absolute; inset:0;
-      background: linear-gradient(180deg, rgba(0,0,0,0) 60%, rgba(0,0,0,.18));
-      pointer-events:none;
-    }
-
-    /* Accordion */
-    details{
-      border: 1px solid rgba(20,18,16,.10);
-      border-radius: 18px;
-      padding: 12px 12px;
-      background: rgba(255,255,255,.55);
-    }
-    summary{
-      cursor:pointer;
-      font-weight:800;
-      list-style:none;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-    }
-    summary::-webkit-details-marker{display:none}
-    .accBody{
-      margin-top: 10px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height:1.55;
-    }
-    .accRow{display:flex; gap:10px; flex-wrap:wrap; margin-top: 10px}
-    .copy{
-      padding: 10px 11px;
-      border-radius: 14px;
-      border: 1px solid rgba(20,18,16,.12);
-      background: rgba(255,255,255,.70);
-      cursor:pointer;
-      font-size: 13px;
-    }
-
-    /* Footer */
-    .foot{
-      text-align:center;
-      color: var(--muted);
-      font-size: 12px;
-      padding: 18px 0 6px;
-    }
-
-    /* Toast */
-    .toast{
-      position: fixed;
-      left: 50%;
-      bottom: 18px;
-      transform: translateX(-50%);
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: rgba(29,26,24,.86);
-      color: rgba(255,255,255,.95);
-      border: 1px solid rgba(255,255,255,.15);
-      font-size: 13px;
+    /* toast only */
+    .toast {
       opacity: 0;
-      pointer-events:none;
+      transform: translateX(-50%) translateY(0);
       transition: opacity .18s ease, transform .18s ease;
-      z-index: 9999;
+      pointer-events: none;
     }
-    .toast.show{opacity:1; transform: translateX(-50%) translateY(-4px)}
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(-4px);
+    }
   </style>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          boxShadow: {
+            soft: "0 18px 40px rgba(20,18,16,.10)",
+            btn: "0 10px 18px rgba(20,18,16,.08)",
+          },
+          borderRadius: {
+            xl2: "22px",
+          },
+          colors: {
+            ink: "#1d1a18",
+            paper: "#fbf7f4",
+            line: "rgba(20,18,16,.10)",
+            muted: "rgba(29,26,24,.60)",
+            champagne: "#d7a98a",
+            bluegray: "#a9b8c9",
+          }
+        }
+      }
+    }
+  </script>
 </head>
 
-<body>
-  <div class="page">
-    <div class="frame">
+<body class="min-h-screen text-ink font-sans tracking-[-.2px] bg-paper
+  [background:radial-gradient(1200px_700px_at_30%_-10%,rgba(215,169,138,.25),transparent_60%),radial-gradient(900px_520px_at_90%_10%,rgba(169,184,201,.20),transparent_55%),#fbf7f4]">
 
-      <!-- HERO (세로로 길게) -->
-      <section class="hero">
-        <!-- 표지 사진 교체 -->
-        <img src="src/image/main.png" alt="cover" />
-        <!-- <div class="heroText">
-          <div class="heroBadge">🤍 Save the date</div>
-          <h1 class="heroTitle">우리 결혼합니다</h1>
-          <p class="heroSub" id="heroSubText">2026. 8. 22 · 토 · 17:00</p>
-        </div> -->
+  <main class="mx-auto w-full max-w-[420px] px-[14px] pt-4 pb-7">
+    <!-- subtle frame -->
+    <div class="rounded-[28px] border border-[rgba(20,18,16,.06)] bg-white/25 backdrop-blur-md p-3">
+
+      <!-- HERO -->
+      <section class="relative overflow-hidden rounded-[28px] border border-[rgba(20,18,16,.12)] shadow-soft bg-zinc-200 mb-4">
+        <img src="src/image/main.png" alt="cover"
+             class="block w-full h-[520px] object-cover saturate-[1.02] contrast-[1.02]" />
+
+        <!-- 오버레이 -->
+        <div class="pointer-events-none absolute inset-0
+          [background:linear-gradient(180deg,rgba(0,0,0,0)_45%,rgba(0,0,0,.50)_100%),radial-gradient(800px_360px_at_50%_25%,rgba(255,255,255,.12),transparent_55%)]">
+        </div>
+
+        <!-- 필요하면 켜서 쓰기 -->
+        <!--
+        <div class="absolute left-4 right-4 bottom-4 text-white/95 drop-shadow-[0_10px_25px_rgba(0,0,0,.35)]">
+          <div class="inline-flex items-center gap-2 text-xs px-3 py-2 rounded-full border border-white/20 bg-black/20 backdrop-blur-md mb-2">
+            🤍 Save the date
+          </div>
+          <h1 class="m-0 text-[30px] leading-tight tracking-[-.6px] font-black">우리 결혼합니다</h1>
+          <p class="mt-2 text-sm opacity-90" id="heroSubText">2026. 08. 22 · 토 · 17:00</p>
+        </div>
+        -->
       </section>
 
       <!-- INTRO -->
-      <section class="card center">
-        <div class="names">
-          <div><strong id="groomName">신랑</strong> <span id="groom">김산</span></div>
-          <div class="dot">·</div>
-          <div><strong id="brideName">신부</strong> <span id="bride">강하나</span></div>
+      <section class="rounded-xl2 border border-line bg-white/70 shadow-soft p-4 my-4 text-center">
+        <div class="flex items-baseline justify-center gap-2 text-base">
+          <div><strong class="font-extrabold" id="groomName">신랑</strong> <span id="groom">김산</span></div>
+          <div class="opacity-50">·</div>
+          <div><strong class="font-extrabold" id="brideName">신부</strong> <span id="bride">강하나</span></div>
         </div>
 
-        <div class="bigDate" id="dateText">2026년 8월 22일 (토) 오후 5:00</div>
-        <p class="place" id="venueText">고려대학교 교우회관</p>
+        <div class="mt-2 mb-1 text-lg font-extrabold" id="dateText">2026년 8월 22일 (토) 오후 5:00</div>
+        <p class="m-0 text-sm text-muted" id="venueText">고려대학교 교우회관</p>
 
-        <div class="btnRow">
-          <a class="btn primary" href="#location">📍 오시는 길</a>
-          <button class="btn" type="button" id="copyAddrTop">📋 주소 복사</button>
+        <div class="mt-3 flex flex-wrap justify-center gap-2">
+          <a class="inline-flex items-center justify-center gap-2 px-3 py-[11px] rounded-[14px]
+                    border border-[rgba(20,18,16,.12)] bg-white/65 shadow-btn text-[13px] active:translate-y-[1px]"
+             href="#location">📍 오시는 길</a>
+
+          <button class="inline-flex items-center justify-center gap-2 px-3 py-[11px] rounded-[14px]
+                         border border-[rgba(20,18,16,.12)] bg-white/65 shadow-btn text-[13px] active:translate-y-[1px]"
+                  type="button" id="copyAddrTop">📋 주소 복사</button>
         </div>
 
-        <div class="sep"></div>
+        <div class="my-3 h-px bg-[rgba(20,18,16,.08)]"></div>
 
-        <p class="muted" style="margin:0">
+        <p class="m-0 text-muted leading-relaxed">
           소중한 분들을 모시고<br/>
           사랑의 서약을 하려 합니다.<br/>
           함께해 주시면 큰 기쁨이겠습니다.
@@ -348,101 +117,178 @@
       </section>
 
       <!-- CALENDAR -->
-      <section class="card">
-        <div class="h2">
-          <div>📅 일정</div>
-          <small class="muted">달력에 저장</small>
+      <section class="rounded-xl2 border border-line bg-white/70 shadow-soft p-4 my-4">
+        <div class="flex items-center justify-between mb-2">
+          <div class="text-base font-extrabold tracking-[-.3px]">📅 일정</div>
+          <small class="text-muted font-medium">달력에 저장</small>
         </div>
-        <div class="calWrap">
-          <div class="calTop">
+
+        <div class="px-2 pt-2 pb-1">
+          <div class="flex items-center justify-between gap-2 mb-2">
             <div>
-              <div class="title" id="calTitle">2026년 8월</div>
-              <div class="mini" id="calMini">선택된 날짜가 강조 표시됩니다</div>
-            </div>
-            <div style="display:flex; gap:8px">
+              <div class="font-black tracking-[-.4px]" id="calTitle">2026년 8월</div>
               
-              <!-- <a class="btn" id="gcalBtn" target="_blank" rel="noreferrer">Google</a> -->
             </div>
+
+            <!-- <div class="flex gap-2"> -->
+              <!-- 구글 캘린더 -->
+              <!-- <a cl<!-- <!-- ass="inline-flex items-center justify-center gap-2 px-3 py-[9px] rounded-[14px]
+                        border border-[rgba(20,18,16,.12)] bg-white/65 shadow-btn text-[12px] active:translate-y-[1px]"
+                 id="gcalBtn" target="_blank" rel="noreferrer">Google</a> -->
+
+              <!-- iCal/ICS 다운로드 -->
+<!--               <a class="inline-flex items-center justify-center gap-2 px-3 py-[9px] rounded-[14px]
+                        border border-[rgba(215,169,138,.45)] bg-[rgba(215,169,138,.20)] shadow-btn text-[12px] active:translate-y-[1px]"
+                 id="icsBtn" download="wedding.ics">ICS</a> 
+            </div> -->
           </div>
 
-          <div class="calGrid" id="calDow"></div>
-          <div class="calGrid" id="calDays"></div>
+          <div class="grid grid-cols-7 gap-2" id="calDow"></div>
+          <div class="grid grid-cols-7 gap-2 mt-2" id="calDays"></div>
         </div>
       </section>
 
-      <!-- LOCATION / NAVER MAP -->
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3161.4315447708477!2d127.03307907686558!3d37.592001422665845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357cbcbc8d707a77%3A0x195d6ec549202318!2z6rOg66Ck64yA7ZWZ6rWQIOq1kOyasO2ajOq0gA!5e0!3m2!1sko!2skr!4v1771597582009!5m2!1sko!2skr" width="360" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <!-- LOCATION -->
+      <section id="location" class="rounded-xl2 border border-line bg-white/70 shadow-soft p-4 my-4">
+        <div class="flex items-center justify-between mb-2">
+          <div class="text-base font-extrabold tracking-[-.3px]">📍 오시는 길</div>
+          <small class="text-muted font-medium">지도/길찾기</small>
+        </div>
+
+        <div class="text-sm text-muted">
+          <div class="font-extrabold text-ink" id="venueText2">고려대학교 교우회관</div>
+          <div class="mt-1" id="addrText">서울특별시 성북구 종암동 29-26</div>
+        </div>
+
+        <div class="mt-3 flex flex-wrap gap-2">
+          <a class="inline-flex items-center justify-center gap-2 px-3 py-[10px] rounded-[14px]
+                    border border-[rgba(20,18,16,.12)] bg-white/65 shadow-btn text-[13px] active:translate-y-[1px]"
+             id="naverOpen" target="_blank" rel="noreferrer">네이버 지도</a>
+
+          <a class="inline-flex items-center justify-center gap-2 px-3 py-[10px] rounded-[14px]
+                    border border-[rgba(20,18,16,.12)] bg-white/65 shadow-btn text-[13px] active:translate-y-[1px]"
+             id="kakaoOpen" target="_blank" rel="noreferrer">카카오맵</a>
+
+          <button class="inline-flex items-center justify-center gap-2 px-3 py-[10px] rounded-[14px]
+                         border border-[rgba(20,18,16,.12)] bg-white/65 shadow-btn text-[13px] active:translate-y-[1px]"
+                  type="button" id="copyAddrBottom">📋 주소 복사</button>
+        </div>
+
+        <div class="mt-4 overflow-hidden rounded-[20px] border border-[rgba(20,18,16,.12)] bg-white/55">
+          <iframe
+            class="w-full h-[320px] border-0"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3161.4315447708477!2d127.03307907686558!3d37.592001422665845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357cbcbc8d707a77%3A0x195d6ec549202318!2z6rOg66Ck64yA7ZWZ6rWQIOq1kOyasO2ajOq0gA!5e0!3m2!1sko!2skr!4v1771597582009!5m2!1sko!2skr">
+          </iframe>
+        </div>
+      </section>
 
       <!-- GALLERY -->
-      <section class="card">
-        <div class="h2">
-          <div>🖼️ 갤러리</div>
-          <small class="muted">사진은 교체하세요</small>
+      <section class="rounded-xl2 border border-line bg-white/70 shadow-soft p-4 my-4">
+        <div class="flex items-center justify-between mb-2">
+          <div class="text-base font-extrabold tracking-[-.3px]">🖼️ 갤러리</div>
+          <small class="text-muted font-medium">사진은 교체하세요</small>
         </div>
-        <div class="gallery">
-          <div class="ph"><img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=900&q=80" alt="g1"></div>
-          <div class="ph"><img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=900&q=80" alt="g2"></div>
-          <div class="ph"><img src="https://images.unsplash.com/photo-1523438097201-dc6f00f3e409?auto=format&fit=crop&w=900&q=80" alt="g3"></div>
-          <div class="ph"><img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=900&q=80" alt="g4"></div>
+
+        <div class="grid grid-cols-2 gap-2.5">
+          <!-- 카드 -->
+          <div class="relative overflow-hidden rounded-[18px] border border-[rgba(20,18,16,.10)] bg-white/50 aspect-square">
+            <img class="w-full h-full object-cover block" src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=900&q=80" alt="g1">
+            <div class="pointer-events-none absolute inset-0 [background:linear-gradient(180deg,rgba(0,0,0,0)_60%,rgba(0,0,0,.18))]"></div>
+          </div>
+
+          <div class="relative overflow-hidden rounded-[18px] border border-[rgba(20,18,16,.10)] bg-white/50 aspect-square">
+            <img class="w-full h-full object-cover block" src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=900&q=80" alt="g2">
+            <div class="pointer-events-none absolute inset-0 [background:linear-gradient(180deg,rgba(0,0,0,0)_60%,rgba(0,0,0,.18))]"></div>
+          </div>
+
+          <div class="relative overflow-hidden rounded-[18px] border border-[rgba(20,18,16,.10)] bg-white/50 aspect-square">
+            <img class="w-full h-full object-cover block" src="https://images.unsplash.com/photo-1523438097201-dc6f00f3e409?auto=format&fit=crop&w=900&q=80" alt="g3">
+            <div class="pointer-events-none absolute inset-0 [background:linear-gradient(180deg,rgba(0,0,0,0)_60%,rgba(0,0,0,.18))]"></div>
+          </div>
+
+          <div class="relative overflow-hidden rounded-[18px] border border-[rgba(20,18,16,.10)] bg-white/50 aspect-square">
+            <img class="w-full h-full object-cover block" src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=900&q=80" alt="g4">
+            <div class="pointer-events-none absolute inset-0 [background:linear-gradient(180deg,rgba(0,0,0,0)_60%,rgba(0,0,0,.18))]"></div>
+          </div>
         </div>
-        <div class="sep"></div>
-        <div class="muted" style="font-size:13px">
-          팁: 사진은 가로/세로 1000px 내외로 리사이즈하면 로딩이 빨라요.
-        </div>
+
+        <div class="my-3 h-px bg-[rgba(20,18,16,.08)]"></div>
+
       </section>
 
       <!-- CONTACT -->
-      <section class="card">
-        <div class="h2">
-          <div>📞 연락처</div>
-          <small class="muted">클릭하면 전화</small>
+      <section class="rounded-xl2 border border-line bg-white/70 shadow-soft p-4 my-4">
+        <div class="flex items-center justify-between mb-2">
+          <div class="text-base font-extrabold tracking-[-.3px]">📞 연락처</div>
+          <small class="text-muted font-medium">클릭하면 전화</small>
         </div>
-        <div class="btnRow">
-          <a class="btn primary" id="callGroom" href="tel:010-1234-5678">신랑에게</a>
-          <a class="btn" id="callBride" href="tel:010-9876-5432">신부에게</a>
+
+        <div class="mt-2 flex flex-wrap justify-center gap-2">
+          <a class="inline-flex items-center justify-center gap-2 px-3 py-[11px] rounded-[14px]
+                    border border-[rgba(215,169,138,.45)] bg-[rgba(215,169,138,.20)] shadow-btn text-[13px] active:translate-y-[1px]"
+             id="callGroom" href="tel:010-4463-5050">신랑에게</a>
+
+          <a class="inline-flex items-center justify-center gap-2 px-3 py-[11px] rounded-[14px]
+                    border border-[rgba(20,18,16,.12)] bg-white/65 shadow-btn text-[13px] active:translate-y-[1px]"
+             id="callBride" href="tel:010-8866-0520">신부에게</a>
         </div>
       </section>
 
-      <!-- MONEY (Accordion) -->
-      <section class="card">
-        <div class="h2">
-          <div>💌 마음 전하실 곳</div>
-          <small class="muted">계좌 복사</small>
+      <!-- MONEY -->
+      <!-- <section class="rounded-xl2 border border-line bg-white/70 shadow-soft p-4 my-4">
+        <div class="flex items-center justify-between mb-2">
+          <div class="text-base font-extrabold tracking-[-.3px]">💌 마음 전하실 곳</div>
+          <small class="text-muted font-medium">계좌 복사</small>
         </div>
 
-        <div style="display:grid; gap:10px">
-          <details>
-            <summary>신랑측 계좌 <span class="muted">▾</span></summary>
-            <div class="accBody">
+        <div class="grid gap-2.5">
+          <details class="rounded-[18px] border border-[rgba(20,18,16,.10)] bg-white/55 p-3">
+            <summary class="cursor-pointer font-extrabold list-none flex items-center justify-between gap-2">
+              <span>신랑측 계좌</span>
+              <span class="text-muted">▾</span>
+            </summary>
+            <div class="mt-2 text-sm text-muted leading-relaxed">
               OO은행 123-456-789012<br/>
               예금주: 홍길동
-              <div class="accRow">
-                <button class="copy" type="button" data-copy="OO은행 123-456-789012 (예금주: 홍길동)">📋 복사</button>
+              <div class="mt-2 flex flex-wrap gap-2">
+                <button class="px-3 py-2 rounded-[14px] border border-[rgba(20,18,16,.12)] bg-white/70 text-[13px] active:translate-y-[1px]"
+                        type="button" data-copy="OO은행 123-456-789012 (예금주: 홍길동)">📋 복사</button>
               </div>
             </div>
           </details>
 
-          <details>
-            <summary>신부측 계좌 <span class="muted">▾</span></summary>
-            <div class="accBody">
+          <details class="rounded-[18px] border border-[rgba(20,18,16,.10)] bg-white/55 p-3">
+            <summary class="cursor-pointer font-extrabold list-none flex items-center justify-between gap-2">
+              <span>신부측 계좌</span>
+              <span class="text-muted">▾</span>
+            </summary>
+            <div class="mt-2 text-sm text-muted leading-relaxed">
               OO은행 987-654-321098<br/>
               예금주: 김영희
-              <div class="accRow">
-                <button class="copy" type="button" data-copy="OO은행 987-654-321098 (예금주: 김영희)">📋 복사</button>
+              <div class="mt-2 flex flex-wrap gap-2">
+                <button class="px-3 py-2 rounded-[14px] border border-[rgba(20,18,16,.12)] bg-white/70 text-[13px] active:translate-y-[1px]"
+                        type="button" data-copy="OO은행 987-654-321098 (예금주: 김영희)">📋 복사</button>
               </div>
             </div>
           </details>
         </div>
-      </section>
+      </section> -->
 
-      <div class="foot">
+      <footer class="text-center text-xs text-muted py-4">
         © <span id="yy"></span> Wedding Invitation · Made for mobile
-      </div>
+      </footer>
 
     </div>
-  </div>
+  </main>
 
-  <div class="toast" id="toast"></div>
+  <!-- Toast -->
+  <div id="toast"
+       class="toast fixed left-1/2 bottom-[18px] -translate-x-1/2 px-3.5 py-2.5 rounded-full
+              bg-[rgba(29,26,24,.86)] text-white/95 border border-white/15 text-[13px] z-[9999]">
+  </div>
 
   <script>
     /********************************************************
@@ -454,6 +300,8 @@
       datetime: { year: 2026, month: 8, day: 22, hour: 17, minute: 0 },
       venue: "고려대학교 교우회관",
       address: "서울특별시 성북구 종암동 29-26",
+      groomTel: "010-4463-5050",
+      brideTel: "010-8866-0520",
     };
 
     /********************************************************
@@ -461,13 +309,16 @@
      ********************************************************/
     const DOW = ["일","월","화","수","목","금","토"];
     const pad2 = (n)=>String(n).padStart(2,"0");
+
     function toast(msg){
       const t = document.getElementById("toast");
+      if(!t) return;
       t.textContent = msg;
       t.classList.add("show");
       clearTimeout(t._h);
       t._h = setTimeout(()=>t.classList.remove("show"), 1500);
     }
+
     async function copyText(text){
       try{
         await navigator.clipboard.writeText(text);
@@ -481,6 +332,16 @@
         ta.remove();
         toast("복사했어요!");
       }
+    }
+
+    function setText(id, value){
+      const el = document.getElementById(id);
+      if(el) el.textContent = value;
+    }
+
+    function setHref(id, value){
+      const el = document.getElementById(id);
+      if(el) el.href = value;
     }
 
     /********************************************************
@@ -501,28 +362,35 @@
       `${CONFIG.datetime.year}년 ${CONFIG.datetime.month}월 ${CONFIG.datetime.day}일 (${DOW[dt.getDay()]}) ` +
       `${ampm} ${hour12}:${pad2(CONFIG.datetime.minute)}`;
 
-    document.getElementById("groom").textContent = CONFIG.groom;
-    document.getElementById("bride").textContent = CONFIG.bride;
-    document.getElementById("dateText").textContent = dateLine;
-    document.getElementById("venueText").textContent = CONFIG.venue;
-    document.getElementById("venueText2").textContent = CONFIG.venue;
-    document.getElementById("addrText").textContent = CONFIG.address;
-    document.getElementById("heroSubText").textContent =
-      `${CONFIG.datetime.year}. ${pad2(CONFIG.datetime.month)}. ${pad2(CONFIG.datetime.day)} · ${DOW[dt.getDay()]} · ${pad2(CONFIG.datetime.hour)}:${pad2(CONFIG.datetime.minute)}`;
-    document.getElementById("yy").textContent = new Date().getFullYear();
+    setText("groom", CONFIG.groom);
+    setText("bride", CONFIG.bride);
+    setText("dateText", dateLine);
+    setText("venueText", CONFIG.venue);
+    setText("venueText2", CONFIG.venue);
+    setText("addrText", CONFIG.address);
+    setText("yy", new Date().getFullYear());
+
+    // 전화번호
+    setHref("callGroom", `tel:${CONFIG.groomTel}`);
+    setHref("callBride", `tel:${CONFIG.brideTel}`);
+
+    // hero sub (켜져 있을 때만)
+    setText("heroSubText",
+      `${CONFIG.datetime.year}. ${pad2(CONFIG.datetime.month)}. ${pad2(CONFIG.datetime.day)} · ${DOW[dt.getDay()]} · ${pad2(CONFIG.datetime.hour)}:${pad2(CONFIG.datetime.minute)}`
+    );
 
     // map links
     const enc = encodeURIComponent(CONFIG.address);
-    const naverSearch = `https://map.naver.com/v5/search/${enc}`;
-    const kakaoSearch = `https://map.kakao.com/link/search/${enc}`;
-    document.getElementById("naverOpen").href = naverSearch;
-    document.getElementById("kakaoOpen").href = kakaoSearch;
-    document.getElementById("naverRoute").href = naverSearch;
-    document.getElementById("kakaoRoute").href = kakaoSearch;
+    const naverSearch = `https://naver.me/GV2th40D`;
+    const kakaoSearch = `https://kko.to/o1mrt7vb05`;
+    setHref("naverOpen", naverSearch);
+    setHref("kakaoOpen", kakaoSearch);
 
     // copy handlers
-    document.getElementById("copyAddrTop").addEventListener("click", ()=>copyText(CONFIG.address));
-    document.getElementById("copyAddrBottom").addEventListener("click", ()=>copyText(CONFIG.address));
+    const c1 = document.getElementById("copyAddrTop");
+    const c2 = document.getElementById("copyAddrBottom");
+    if(c1) c1.addEventListener("click", ()=>copyText(CONFIG.address));
+    if(c2) c2.addEventListener("click", ()=>copyText(CONFIG.address));
     document.querySelectorAll("[data-copy]").forEach(el=>{
       el.addEventListener("click", ()=>copyText(el.getAttribute("data-copy")));
     });
@@ -530,50 +398,72 @@
     /********************************************************
      * 2) calendar render
      ********************************************************/
-    const calTitle = document.getElementById("calTitle");
+    setText("calTitle", `${CONFIG.datetime.year}년 ${CONFIG.datetime.month}월`);
+
     const calDow = document.getElementById("calDow");
     const calDays = document.getElementById("calDays");
-    calTitle.textContent = `${CONFIG.datetime.year}년 ${CONFIG.datetime.month}월`;
 
-    DOW.forEach((w,i)=>{
-      const el = document.createElement("div");
-      el.className = "dow";
-      el.textContent = w;
-      calDow.appendChild(el);
-    });
+    if(calDow && calDays){
+      calDow.innerHTML = "";
+      calDays.innerHTML = "";
 
-    const y = CONFIG.datetime.year;
-    const m = CONFIG.datetime.month;
-    const targetDay = CONFIG.datetime.day;
+      // DOW header
+      DOW.forEach(w=>{
+        const el = document.createElement("div");
+        el.className = "text-center text-xs text-muted py-1";
+        el.textContent = w;
+        calDow.appendChild(el);
+      });
 
-    const first = new Date(y, m-1, 1);
-    const last = new Date(y, m, 0);
-    const startDow = first.getDay();
-    const totalDays = last.getDate();
+      const y = CONFIG.datetime.year;
+      const m = CONFIG.datetime.month;
+      const targetDay = CONFIG.datetime.day;
 
-    for(let i=0;i<startDow;i++){
-      const el = document.createElement("div");
-      el.className = "day off";
-      el.textContent = "";
-      calDays.appendChild(el);
-    }
+      const first = new Date(y, m-1, 1);
+      const last = new Date(y, m, 0);
+      const startDow = first.getDay();
+      const totalDays = last.getDate();
 
-    for(let day=1; day<=totalDays; day++){
-      const d0 = new Date(y, m-1, day);
-      const el = document.createElement("div");
-      el.className = "day";
-      if(d0.getDay()===0) el.classList.add("sun");
-      if(d0.getDay()===6) el.classList.add("sat");
-      if(day===targetDay) el.classList.add("target");
-      el.textContent = day;
-      calDays.appendChild(el);
+      // leading blanks
+      for(let i=0;i<startDow;i++){
+        const el = document.createElement("div");
+        el.className = "h-11 rounded-[14px] border border-[rgba(20,18,16,.10)] bg-white/35 opacity-40";
+        calDays.appendChild(el);
+      }
+
+      // days
+      for(let day=1; day<=totalDays; day++){
+        const d0 = new Date(y, m-1, day);
+        const isSun = d0.getDay()===0;
+        const isSat = d0.getDay()===6;
+        const isTarget = day===targetDay;
+
+        const el = document.createElement("div");
+
+        let base = "relative h-11 rounded-[14px] border border-[rgba(20,18,16,.10)] bg-white/55 flex items-center justify-center text-[13px]";
+        if(isSun) base += " text-[#c46b6b]";
+        if(isSat) base += " text-[#557aa8]";
+        if(isTarget) base += " border-[rgba(215,169,138,.70)] bg-[rgba(215,169,138,.22)] shadow-[inset_0_0_0_3px_rgba(215,169,138,.12)] font-black";
+
+        el.className = base;
+        el.textContent = day;
+
+        if(isTarget){
+          const badge = document.createElement("div");
+          badge.className = "absolute bottom-1 left-1/2 -translate-x-1/2 text-[9px] px-1.5 py-0.5 rounded-full bg-white/80 border border-[rgba(20,18,16,.10)] text-[rgba(29,26,24,.82)]";
+          badge.textContent = "D-DAY";
+          el.appendChild(badge);
+        }
+
+        calDays.appendChild(el);
+      }
     }
 
     /********************************************************
      * 3) calendar export (ics + google)
      ********************************************************/
     function makeICS(startLocal){
-      // UTC 변환
+      // local -> utc
       const startUtc = new Date(startLocal.getTime() - startLocal.getTimezoneOffset()*60000);
       const endUtc = new Date(startUtc.getTime() + 60*60*1000);
 
@@ -599,8 +489,11 @@
       ].join("\r\n");
     }
 
-    const icsBlob = new Blob([makeICS(dt)], {type:"text/calendar;charset=utf-8"});
-    document.getElementById("icsBtn").href = URL.createObjectURL(icsBlob);
+    const icsBtn = document.getElementById("icsBtn");
+    if(icsBtn){
+      const icsBlob = new Blob([makeICS(dt)], {type:"text/calendar;charset=utf-8"});
+      icsBtn.href = URL.createObjectURL(icsBlob);
+    }
 
     function googleCalLink(startLocal){
       const endLocal = new Date(startLocal.getTime() + 60*60*1000);
@@ -614,7 +507,9 @@
       const location = encodeURIComponent(`${CONFIG.venue} (${CONFIG.address})`);
       return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${text}&dates=${dates}&details=${details}&location=${location}`;
     }
-    document.getElementById("gcalBtn").href = googleCalLink(dt);
+
+    const gcalBtn = document.getElementById("gcalBtn");
+    if(gcalBtn) gcalBtn.href = googleCalLink(dt);
   </script>
 </body>
 </html>
