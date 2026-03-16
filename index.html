@@ -1,25 +1,24 @@
-`<!doctype html>
+<!doctype html>
 <html lang="ko">
 <head>
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-K1DVG1S1N0"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-K1DVG1S1N0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-K1DVG1S1N0');
+  </script>
 
-  gtag('config', 'G-K1DVG1S1N0');
-</script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="format-detection" content="telephone=no" />
   <title>모바일 청첩장</title>
 
-  <!-- Tailwind (CDN: 빠르게 편집/배포용) -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
 
   <style>
-    /* toast only */
     .toast {
       opacity: 0;
       transform: translateX(-50%) translateY(0);
@@ -55,37 +54,21 @@
       }
     }
   </script>
-  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
-
 </head>
 
-<body class="min-h-screen text-ink font-sans tracking-[-.2px] bg-paper
-  [background:radial-gradient(1200px_700px_at_30%_-10%,rgba(215,169,138,.25),transparent_60%),radial-gradient(900px_520px_at_90%_10%,rgba(169,184,201,.20),transparent_55%),#fbf7f4]">
+<body class="min-h-screen text-ink font-sans tracking-[-.2px] bg-paper [background:radial-gradient(1200px_700px_at_30%_-10%,rgba(215,169,138,.25),transparent_60%),radial-gradient(900px_520px_at_90%_10%,rgba(169,184,201,.20),transparent_55%),#fbf7f4]">
 
   <main class="mx-auto w-full max-w-[420px] px-[14px] pt-4 pb-7">
-    <!-- subtle frame -->
     <div class="rounded-[28px] border border-[rgba(20,18,16,.06)] bg-white/25 backdrop-blur-md p-3">
 
       <!-- HERO -->
       <section class="relative overflow-hidden rounded-[28px] border border-[rgba(20,18,16,.12)] shadow-soft bg-zinc-200 mb-4">
-        <img src="src/image/main.png" alt="cover"
-             class="block w-full h-[520px] object-cover saturate-[1.02] contrast-[1.02]" />
-
-        <!-- 오버레이 -->
-        <div class="pointer-events-none absolute inset-0
-          [background:linear-gradient(180deg,rgba(0,0,0,0)_45%,rgba(0,0,0,.50)_100%),radial-gradient(800px_360px_at_50%_25%,rgba(255,255,255,.12),transparent_55%)]">
-        </div>
-
-        <!-- 필요하면 켜서 쓰기 -->
-        <!--
-        <div class="absolute left-4 right-4 bottom-4 text-white/95 drop-shadow-[0_10px_25px_rgba(0,0,0,.35)]">
-          <div class="inline-flex items-center gap-2 text-xs px-3 py-2 rounded-full border border-white/20 bg-black/20 backdrop-blur-md mb-2">
-            🤍 Save the date
-          </div>
-          <h1 class="m-0 text-[30px] leading-tight tracking-[-.6px] font-black">우리 결혼합니다</h1>
-          <p class="mt-2 text-sm opacity-90" id="heroSubText">2026. 08. 22 · 토 · 17:00</p>
-        </div>
-        -->
+        <img
+          src="src/image/main.png"
+          alt="cover"
+          class="block w-full h-[520px] object-cover saturate-[1.02] contrast-[1.02]"
+        />
+        <div class="pointer-events-none absolute inset-0 [background:linear-gradient(180deg,rgba(0,0,0,0)_45%,rgba(0,0,0,.50)_100%),radial-gradient(800px_360px_at_50%_25%,rgba(255,255,255,.12),transparent_55%)]"></div>
       </section>
 
       <!-- INTRO -->
@@ -100,20 +83,23 @@
         <p class="m-0 text-sm text-muted" id="venueText">고려대학교 교우회관</p>
 
         <div class="mt-3 flex flex-wrap justify-center gap-2">
-          <a class="inline-flex items-center justify-center gap-2 px-3 py-[11px] rounded-[14px]
-                    border border-[rgba(20,18,16,.12)] bg-white/65 shadow-btn text-[13px] active:translate-y-[1px]"
-             href="#location">📍 오시는 길</a>
+          <a
+            class="inline-flex items-center justify-center gap-2 px-3 py-[11px] rounded-[14px] border border-[rgba(20,18,16,.12)] bg-white/65 shadow-btn text-[13px] active:translate-y-[1px]"
+            href="#location"
+          >📍 오시는 길</a>
 
-          <button class="inline-flex items-center justify-center gap-2 px-3 py-[11px] rounded-[14px]
-                         border border-[rgba(20,18,16,.12)] bg-white/65 shadow-btn text-[13px] active:translate-y-[1px]"
-                  type="button" id="copyAddrTop">📋 주소 복사</button>
+          <button
+            class="inline-flex items-center justify-center gap-2 px-3 py-[11px] rounded-[14px] border border-[rgba(20,18,16,.12)] bg-white/65 shadow-btn text-[13px] active:translate-y-[1px]"
+            type="button"
+            id="copyAddrTop"
+          >📋 주소 복사</button>
         </div>
 
         <div class="my-3 h-px bg-[rgba(20,18,16,.08)]"></div>
 
         <p class="m-0 text-muted leading-relaxed">
-          긴 <b>산</b>길을 돌아<br/>
-마침내 <b>하나</b>의 길을 찾았습니다.
+          긴 <b>산</b>길을 돌아<br />
+          마침내 <b>하나</b>의 길을 찾았습니다.
         </p>
       </section>
 
@@ -128,20 +114,7 @@
           <div class="flex items-center justify-between gap-2 mb-2">
             <div>
               <div class="font-black tracking-[-.4px]" id="calTitle">2026년 8월</div>
-              
             </div>
-
-            <!-- <div class="flex gap-2"> -->
-              <!-- 구글 캘린더 -->
-              <!-- <a cl<!-- <!-- ass="inline-flex items-center justify-center gap-2 px-3 py-[9px] rounded-[14px]
-                        border border-[rgba(20,18,16,.12)] bg-white/65 shadow-btn text-[12px] active:translate-y-[1px]"
-                 id="gcalBtn" target="_blank" rel="noreferrer">Google</a> -->
-
-              <!-- iCal/ICS 다운로드 -->
-<!--               <a class="inline-flex items-center justify-center gap-2 px-3 py-[9px] rounded-[14px]
-                        border border-[rgba(215,169,138,.45)] bg-[rgba(215,169,138,.20)] shadow-btn text-[12px] active:translate-y-[1px]"
-                 id="icsBtn" download="wedding.ics">ICS</a> 
-            </div> -->
           </div>
 
           <div class="grid grid-cols-7 gap-2" id="calDow"></div>
@@ -162,17 +135,25 @@
         </div>
 
         <div class="mt-3 flex flex-wrap gap-2">
-          <a class="inline-flex items-center justify-center gap-2 px-3 py-[10px] rounded-[14px]
-                    border border-[rgba(20,18,16,.12)] bg-white/65 shadow-btn text-[13px] active:translate-y-[1px]"
-             id="naverOpen" target="_blank" rel="noreferrer">네이버 지도</a>
+          <a
+            class="inline-flex items-center justify-center gap-2 px-3 py-[10px] rounded-[14px] border border-[rgba(20,18,16,.12)] bg-white/65 shadow-btn text-[13px] active:translate-y-[1px]"
+            id="naverOpen"
+            target="_blank"
+            rel="noreferrer"
+          >네이버 지도</a>
 
-          <a class="inline-flex items-center justify-center gap-2 px-3 py-[10px] rounded-[14px]
-                    border border-[rgba(20,18,16,.12)] bg-white/65 shadow-btn text-[13px] active:translate-y-[1px]"
-             id="kakaoOpen" target="_blank" rel="noreferrer">카카오맵</a>
+          <a
+            class="inline-flex items-center justify-center gap-2 px-3 py-[10px] rounded-[14px] border border-[rgba(20,18,16,.12)] bg-white/65 shadow-btn text-[13px] active:translate-y-[1px]"
+            id="kakaoOpen"
+            target="_blank"
+            rel="noreferrer"
+          >카카오맵</a>
 
-          <button class="inline-flex items-center justify-center gap-2 px-3 py-[10px] rounded-[14px]
-                         border border-[rgba(20,18,16,.12)] bg-white/65 shadow-btn text-[13px] active:translate-y-[1px]"
-                  type="button" id="copyAddrBottom">📋 주소 복사</button>
+          <button
+            class="inline-flex items-center justify-center gap-2 px-3 py-[10px] rounded-[14px] border border-[rgba(20,18,16,.12)] bg-white/65 shadow-btn text-[13px] active:translate-y-[1px]"
+            type="button"
+            id="copyAddrBottom"
+          >📋 주소 복사</button>
         </div>
 
         <div class="mt-4 overflow-hidden rounded-[20px] border border-[rgba(20,18,16,.12)] bg-white/55">
@@ -181,8 +162,8 @@
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
             allowfullscreen
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3161.4315447708477!2d127.03307907686558!3d37.592001422665845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357cbcbc8d707a77%3A0x195d6ec549202318!2z6rOg66Ck64yA7ZWZ6rWQIOq1kOyasO2ajOq0gA!5e0!3m2!1sko!2skr!4v1771597582009!5m2!1sko!2skr">
-          </iframe>
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3161.4315447708477!2d127.03307907686558!3d37.592001422665845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357cbcbc8d707a77%3A0x195d6ec549202318!2z6rOg66Ck64yA7ZWZ6rWQIOq1kOyasO2ajOq0gA!5e0!3m2!1sko!2skr!4v1771597582009!5m2!1sko!2skr"
+          ></iframe>
         </div>
       </section>
 
@@ -193,7 +174,6 @@
         </div>
 
         <div class="grid grid-cols-2 gap-2.5">
-          <!-- 카드 -->
           <div class="relative overflow-hidden rounded-[18px] border border-[rgba(20,18,16,.10)] bg-white/50 aspect-square">
             <img class="w-full h-full object-cover block" src="src/image/IMG_0456.png" alt="g1">
             <div class="pointer-events-none absolute inset-0 [background:linear-gradient(180deg,rgba(0,0,0,0)_60%,rgba(0,0,0,.18))]"></div>
@@ -216,7 +196,6 @@
         </div>
 
         <div class="my-3 h-px bg-[rgba(20,18,16,.08)]"></div>
-
       </section>
 
       <!-- CONTACT -->
@@ -226,172 +205,189 @@
         </div>
 
         <div class="mt-2 flex flex-wrap justify-center gap-2">
-          <a class="inline-flex items-center justify-center gap-2 px-3 py-[11px] rounded-[14px]
-                    border border-[rgba(215,169,138,.45)] bg-[rgba(215,169,138,.20)] shadow-btn text-[13px] active:translate-y-[1px]"
-             id="callGroom" href="tel:010-4463-5050">신랑에게</a>
+          <a
+            class="inline-flex items-center justify-center gap-2 px-3 py-[11px] rounded-[14px] border border-[rgba(215,169,138,.45)] bg-[rgba(215,169,138,.20)] shadow-btn text-[13px] active:translate-y-[1px]"
+            id="callGroom"
+            href="tel:010-4463-5050"
+          >신랑에게</a>
 
-          <a class="inline-flex items-center justify-center gap-2 px-3 py-[11px] rounded-[14px]
-                    border border-[rgba(20,18,16,.12)] bg-white/65 shadow-btn text-[13px] active:translate-y-[1px]"
-             id="callBride" href="tel:010-8866-0520">신부에게</a>
+          <a
+            class="inline-flex items-center justify-center gap-2 px-3 py-[11px] rounded-[14px] border border-[rgba(20,18,16,.12)] bg-white/65 shadow-btn text-[13px] active:translate-y-[1px]"
+            id="callBride"
+            href="tel:010-8866-0520"
+          >신부에게</a>
         </div>
       </section>
 
-      <section>
-        <section id="commentApp" class="mt-6">
-  <div class="rounded-2xl border border-black/10 bg-white/70 shadow-lg p-4">
-    <div class="flex items-center justify-between mb-3">
-      <h2 class="text-base font-bold tracking-tight">💬 축하 댓글</h2>
-      <span class="text-xs text-black/50">{{ comments.length }}개</span>
-    </div>
-
-
-  <!-- 댓글 목록 -->
-    <div class="mt-4 space-y-3">
-      <div
-        v-if="loadingList"
-        class="rounded-2xl border border-dashed border-black/10 bg-white/60 px-4 py-6 text-center text-sm text-black/50"
-      >
-        댓글 불러오는 중...
-      </div>
-
-      <div
-        v-else-if="comments.length === 0"
-        class="rounded-2xl border border-dashed border-black/10 bg-white/60 px-4 py-6 text-center text-sm text-black/50"
-      >
-        아직 댓글이 없어요.
-      </div>
-
-      <div
-        v-for="item in comments"
-        :key="item.id"
-        class="rounded-2xl border border-black/10 bg-white/70 shadow-sm p-4"
-      >
-        <div class="flex items-start justify-between gap-3 mb-2">
-          <div class="font-semibold text-sm text-black/85">
-            {{ item.name }}
+      <!-- COMMENT -->
+      <section id="commentApp" class="mt-6">
+        <div class="rounded-2xl border border-black/10 bg-white/70 shadow-lg p-4">
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="text-base font-bold tracking-tight">💬 축하 댓글</h2>
+            <span class="text-xs text-black/50">{{ comments.length }}개</span>
           </div>
-          <div class="shrink-0 text-xs text-black/45">
-            {{ formatDate(item.created) }}
+
+          <div class="mt-4 space-y-3">
+            <div
+              v-if="loadingList"
+              class="rounded-2xl border border-dashed border-black/10 bg-white/60 px-4 py-6 text-center text-sm text-black/50"
+            >
+              댓글 불러오는 중...
+            </div>
+
+            <div
+              v-else-if="comments.length === 0"
+              class="rounded-2xl border border-dashed border-black/10 bg-white/60 px-4 py-6 text-center text-sm text-black/50"
+            >
+              아직 댓글이 없어요.
+            </div>
+
+            <div
+              v-for="item in comments"
+              :key="item.id"
+              class="rounded-2xl border border-black/10 bg-white/70 shadow-sm p-4"
+            >
+              <div class="flex items-start justify-between gap-3 mb-2">
+                <div>
+                  <div class="font-semibold text-sm text-black/85">
+                    {{ item.name }}
+                  </div>
+                  <div class="shrink-0 text-xs text-black/45 mt-1">
+                    {{ formatDate(item.created) }}
+                  </div>
+                </div>
+
+                <div v-if="editingId !== item.id" class="flex items-center gap-2">
+                  <button
+                    type="button"
+                    @click="startEdit(item)"
+                    class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-black/10 bg-white text-base text-black/60 transition hover:bg-black/5"
+                    title="수정 / 삭제"
+                  >
+                    ✏️
+                  </button>
+                </div>
+              </div>
+
+              <!-- 읽기 모드 -->
+              <div
+                v-if="editingId !== item.id"
+                class="whitespace-pre-wrap break-words text-sm leading-6 text-black/75"
+              >
+                {{ item.comment }}
+              </div>
+
+              <!-- 편집 모드 -->
+              <div v-else class="space-y-3">
+                <textarea
+                  v-model.trim="editForm.comment"
+                  rows="4"
+                  maxlength="500"
+                  class="w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm outline-none resize-none focus:border-[#d7a98a] focus:ring-4 focus:ring-[#d7a98a]/15"
+                  placeholder="댓글 내용을 수정해주세요"
+                ></textarea>
+
+                <input
+                  v-model="editForm.password"
+                  type="password"
+                  maxlength="100"
+                  placeholder="비밀번호 입력"
+                  class="w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm outline-none focus:border-[#d7a98a] focus:ring-4 focus:ring-[#d7a98a]/15"
+                />
+
+                <div class="flex gap-2">
+                  <button
+                    type="button"
+                    @click="updateComment(item.id)"
+                    :disabled="loadingAction"
+                    class="flex-1 rounded-xl bg-[#d7a98a] px-4 py-3 text-sm font-semibold text-white transition active:translate-y-px disabled:opacity-60"
+                  >
+                    {{ loadingAction ? '처리 중...' : '수정 저장' }}
+                  </button>
+
+                  <button
+                    type="button"
+                    @click="deleteComment(item.id)"
+                    :disabled="loadingAction"
+                    class="flex-1 rounded-xl bg-red-500 px-4 py-3 text-sm font-semibold text-white transition active:translate-y-px disabled:opacity-60"
+                  >
+                    삭제
+                  </button>
+
+                  <button
+                    type="button"
+                    @click="cancelEdit"
+                    :disabled="loadingAction"
+                    class="rounded-xl border border-black/10 bg-white px-4 py-3 text-sm font-semibold text-black/70 transition active:translate-y-px disabled:opacity-60"
+                  >
+                    취소
+                  </button>
+                </div>
+
+                <p class="text-xs text-black/45">
+                  수정 또는 삭제하려면 작성할 때 입력한 비밀번호가 필요해요.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="whitespace-pre-wrap break-words text-sm leading-6 text-black/75">
-          {{ item.comment }}
+        <div class="space-y-3 mt-4">
+          <input
+            v-model.trim="form.name"
+            type="text"
+            maxlength="50"
+            placeholder="이름"
+            class="w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm outline-none focus:border-[#d7a98a] focus:ring-4 focus:ring-[#d7a98a]/15"
+          />
+
+          <input
+            v-model="form.password"
+            type="password"
+            maxlength="100"
+            placeholder="비밀번호"
+            class="w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm outline-none focus:border-[#d7a98a] focus:ring-4 focus:ring-[#d7a98a]/15"
+          />
+
+          <textarea
+            v-model.trim="form.comment"
+            maxlength="500"
+            rows="4"
+            placeholder="축하 메시지를 남겨주세요"
+            class="w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm outline-none resize-none focus:border-[#d7a98a] focus:ring-4 focus:ring-[#d7a98a]/15"
+          ></textarea>
+
+          <button
+            type="button"
+            @click="submitComment"
+            :disabled="loadingSubmit"
+            class="w-full rounded-xl bg-[#d7a98a] px-4 py-3 text-sm font-semibold text-white transition active:translate-y-px disabled:opacity-60 disabled:cursor-not-allowed"
+          >
+            {{ loadingSubmit ? '등록 중...' : '댓글 등록' }}
+          </button>
+
+          <p v-if="errorMessage" class="text-sm text-red-500">
+            {{ errorMessage }}
+          </p>
+
+          <p v-if="successMessage" class="text-sm text-green-600">
+            {{ successMessage }}
+          </p>
         </div>
-      </div>
-    </div>
-    
-  </div>
-
-<br/>
-<!-- 작성 폼 -->
-    <div class="space-y-3">
-      <input
-        v-model.trim="form.name"
-        type="text"
-        maxlength="50"
-        placeholder="이름"
-        class="w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm outline-none focus:border-[#d7a98a] focus:ring-4 focus:ring-[#d7a98a]/15"
-      />
-
-      <input
-        v-model="form.password"
-        type="password"
-        maxlength="100"
-        placeholder="비밀번호"
-        class="w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm outline-none focus:border-[#d7a98a] focus:ring-4 focus:ring-[#d7a98a]/15"
-      />
-
-      <textarea
-        v-model.trim="form.comment"
-        maxlength="500"
-        rows="4"
-        placeholder="축하 메시지를 남겨주세요"
-        class="w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm outline-none resize-none focus:border-[#d7a98a] focus:ring-4 focus:ring-[#d7a98a]/15"
-      ></textarea>
-
-      <button
-        type="button"
-        @click="submitComment"
-        :disabled="loadingSubmit"
-        class="w-full rounded-xl bg-[#d7a98a] px-4 py-3 text-sm font-semibold text-white transition active:translate-y-px disabled:opacity-60 disabled:cursor-not-allowed"
-      >
-        {{ loadingSubmit ? '등록 중...' : '댓글 등록' }}
-      </button>
-
-      <!-- <p class="text-xs text-black/45">
-        비밀번호는 수정/삭제 기능 확장 시 본인 확인용으로 사용할 수 있어요.
-      </p> -->
-
-      <p v-if="errorMessage" class="text-sm text-red-500">
-        {{ errorMessage }}
-      </p>
-
-      <p v-if="successMessage" class="text-sm text-green-600">
-        {{ successMessage }}
-      </p>
-    </div>
-  
-</section>
       </section>
-
-      <!-- MONEY -->
-      <!-- <section class="rounded-xl2 border border-line bg-white/70 shadow-soft p-4 my-4">
-        <div class="flex items-center justify-between mb-2">
-          <div class="text-base font-extrabold tracking-[-.3px]">💌 마음 전하실 곳</div>
-          <small class="text-muted font-medium">계좌 복사</small>
-        </div>
-
-        <div class="grid gap-2.5">
-          <details class="rounded-[18px] border border-[rgba(20,18,16,.10)] bg-white/55 p-3">
-            <summary class="cursor-pointer font-extrabold list-none flex items-center justify-between gap-2">
-              <span>신랑측 계좌</span>
-              <span class="text-muted">▾</span>
-            </summary>
-            <div class="mt-2 text-sm text-muted leading-relaxed">
-              OO은행 123-456-789012<br/>
-              예금주: 홍길동
-              <div class="mt-2 flex flex-wrap gap-2">
-                <button class="px-3 py-2 rounded-[14px] border border-[rgba(20,18,16,.12)] bg-white/70 text-[13px] active:translate-y-[1px]"
-                        type="button" data-copy="OO은행 123-456-789012 (예금주: 홍길동)">📋 복사</button>
-              </div>
-            </div>
-          </details>
-
-          <details class="rounded-[18px] border border-[rgba(20,18,16,.10)] bg-white/55 p-3">
-            <summary class="cursor-pointer font-extrabold list-none flex items-center justify-between gap-2">
-              <span>신부측 계좌</span>
-              <span class="text-muted">▾</span>
-            </summary>
-            <div class="mt-2 text-sm text-muted leading-relaxed">
-              OO은행 987-654-321098<br/>
-              예금주: 김영희
-              <div class="mt-2 flex flex-wrap gap-2">
-                <button class="px-3 py-2 rounded-[14px] border border-[rgba(20,18,16,.12)] bg-white/70 text-[13px] active:translate-y-[1px]"
-                        type="button" data-copy="OO은행 987-654-321098 (예금주: 김영희)">📋 복사</button>
-              </div>
-            </div>
-          </details>
-        </div>
-      </section> -->
 
       <footer class="text-center text-xs text-muted py-4">
         © <span id="yy"></span> Wedding Invitation · Made for mobile
       </footer>
-
     </div>
   </main>
 
-  <!-- Toast -->
-  <div id="toast"
-       class="toast fixed left-1/2 bottom-[18px] -translate-x-1/2 px-3.5 py-2.5 rounded-full
-              bg-[rgba(29,26,24,.86)] text-white/95 border border-white/15 text-[13px] z-[9999]">
-  </div>
+  <div
+    id="toast"
+    class="toast fixed left-1/2 bottom-[18px] -translate-x-1/2 px-3.5 py-2.5 rounded-full bg-[rgba(29,26,24,.86)] text-white/95 border border-white/15 text-[13px] z-[9999]"
+  ></div>
 
   <script>
-    /********************************************************
-     * 0) 여기만 바꾸면 전체가 바뀝니다
-     ********************************************************/
     const CONFIG = {
       groom: "김산",
       bride: "강하나",
@@ -402,9 +398,6 @@
       brideTel: "010-8866-0520",
     };
 
-    /********************************************************
-     * utils
-     ********************************************************/
     const DOW = ["일","월","화","수","목","금","토"];
     const pad2 = (n)=>String(n).padStart(2,"0");
 
@@ -442,12 +435,9 @@
       if(el) el.href = value;
     }
 
-    /********************************************************
-     * 1) bind text
-     ********************************************************/
     const dt = new Date(
       CONFIG.datetime.year,
-      CONFIG.datetime.month-1,
+      CONFIG.datetime.month - 1,
       CONFIG.datetime.day,
       CONFIG.datetime.hour,
       CONFIG.datetime.minute,
@@ -468,34 +458,28 @@
     setText("addrText", CONFIG.address);
     setText("yy", new Date().getFullYear());
 
-    // 전화번호
     setHref("callGroom", `tel:${CONFIG.groomTel}`);
     setHref("callBride", `tel:${CONFIG.brideTel}`);
 
-    // hero sub (켜져 있을 때만)
-    setText("heroSubText",
+    setText(
+      "heroSubText",
       `${CONFIG.datetime.year}. ${pad2(CONFIG.datetime.month)}. ${pad2(CONFIG.datetime.day)} · ${DOW[dt.getDay()]} · ${pad2(CONFIG.datetime.hour)}:${pad2(CONFIG.datetime.minute)}`
     );
 
-    // map links
-    const enc = encodeURIComponent(CONFIG.address);
     const naverSearch = `https://naver.me/GV2th40D`;
     const kakaoSearch = `https://kko.to/o1mrt7vb05`;
     setHref("naverOpen", naverSearch);
     setHref("kakaoOpen", kakaoSearch);
 
-    // copy handlers
     const c1 = document.getElementById("copyAddrTop");
     const c2 = document.getElementById("copyAddrBottom");
     if(c1) c1.addEventListener("click", ()=>copyText(CONFIG.address));
     if(c2) c2.addEventListener("click", ()=>copyText(CONFIG.address));
+
     document.querySelectorAll("[data-copy]").forEach(el=>{
       el.addEventListener("click", ()=>copyText(el.getAttribute("data-copy")));
     });
 
-    /********************************************************
-     * 2) calendar render
-     ********************************************************/
     setText("calTitle", `${CONFIG.datetime.year}년 ${CONFIG.datetime.month}월`);
 
     const calDow = document.getElementById("calDow");
@@ -505,7 +489,6 @@
       calDow.innerHTML = "";
       calDays.innerHTML = "";
 
-      // DOW header
       DOW.forEach(w=>{
         const el = document.createElement("div");
         el.className = "text-center text-xs text-muted py-1";
@@ -522,19 +505,17 @@
       const startDow = first.getDay();
       const totalDays = last.getDate();
 
-      // leading blanks
-      for(let i=0;i<startDow;i++){
+      for(let i=0; i<startDow; i++){
         const el = document.createElement("div");
         el.className = "h-11 rounded-[14px] border border-[rgba(20,18,16,.10)] bg-white/35 opacity-40";
         calDays.appendChild(el);
       }
 
-      // days
       for(let day=1; day<=totalDays; day++){
         const d0 = new Date(y, m-1, day);
-        const isSun = d0.getDay()===0;
-        const isSat = d0.getDay()===6;
-        const isTarget = day===targetDay;
+        const isSun = d0.getDay() === 0;
+        const isSat = d0.getDay() === 6;
+        const isTarget = day === targetDay;
 
         const el = document.createElement("div");
 
@@ -557,11 +538,7 @@
       }
     }
 
-    /********************************************************
-     * 3) calendar export (ics + google)
-     ********************************************************/
     function makeICS(startLocal){
-      // local -> utc
       const startUtc = new Date(startLocal.getTime() - startLocal.getTimezoneOffset()*60000);
       const endUtc = new Date(startUtc.getTime() + 60*60*1000);
 
@@ -610,19 +587,24 @@
     if(gcalBtn) gcalBtn.href = googleCalLink(dt);
   </script>
 
-
   <script>
-  const { createApp } = Vue;
+  // const { createApp } = Vue;
 
-  createApp({
+  const commentApp = Vue.createApp({
     data() {
       return {
         apiBase: 'https://marry.jaksa.day/api/v1/comment',
         comments: [],
         loadingList: false,
         loadingSubmit: false,
+        loadingAction: false,
         errorMessage: '',
         successMessage: '',
+        editingId: null,
+        editForm: {
+          comment: '',
+          password: ''
+        },
         form: {
           name: '',
           password: '',
@@ -716,6 +698,107 @@
         }
       },
 
+      startEdit(item) {
+        this.errorMessage = '';
+        this.successMessage = '';
+        this.editingId = item.id;
+        this.editForm.comment = item.comment;
+        this.editForm.password = '';
+      },
+
+      cancelEdit() {
+        this.editingId = null;
+        this.editForm.comment = '';
+        this.editForm.password = '';
+      },
+
+      async updateComment(id) {
+        this.errorMessage = '';
+        this.successMessage = '';
+
+        if (!this.editForm.comment) {
+          this.errorMessage = '수정할 댓글 내용을 입력해주세요.';
+          return;
+        }
+
+        if (!this.editForm.password) {
+          this.errorMessage = '비밀번호를 입력해주세요.';
+          return;
+        }
+
+        this.loadingAction = true;
+
+        try {
+          const res = await fetch(`${this.apiBase}/${id}`, {
+            method: 'PATCH',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              password: this.editForm.password,
+              comment: this.editForm.comment
+            })
+          });
+
+          const data = await res.json().catch(() => ({}));
+
+          if (!res.ok) {
+            throw new Error(data.message || '댓글 수정에 실패했습니다.');
+          }
+
+          this.successMessage = '댓글이 수정되었어요.';
+          this.cancelEdit();
+          await this.fetchComments();
+        } catch (err) {
+          console.error(err);
+          this.errorMessage = err.message || '댓글 수정 중 오류가 발생했습니다.';
+        } finally {
+          this.loadingAction = false;
+        }
+      },
+
+      async deleteComment(id) {
+        this.errorMessage = '';
+        this.successMessage = '';
+
+        if (!this.editForm.password) {
+          this.errorMessage = '비밀번호를 입력해주세요.';
+          return;
+        }
+
+        const ok = window.confirm('이 댓글을 삭제할까요?');
+        if (!ok) return;
+
+        this.loadingAction = true;
+
+        try {
+          const res = await fetch(`${this.apiBase}/${id}`, {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              password: this.editForm.password
+            })
+          });
+
+          const data = await res.json().catch(() => ({}));
+
+          if (!res.ok) {
+            throw new Error(data.message || '댓글 삭제에 실패했습니다.');
+          }
+
+          this.successMessage = '댓글이 삭제되었어요.';
+          this.cancelEdit();
+          await this.fetchComments();
+        } catch (err) {
+          console.error(err);
+          this.errorMessage = err.message || '댓글 삭제 중 오류가 발생했습니다.';
+        } finally {
+          this.loadingAction = false;
+        }
+      },
+
       formatDate(value) {
         if (!value) return '';
 
@@ -731,7 +814,12 @@
         return `${yyyy}.${mm}.${dd} ${hh}:${mi}`;
       }
     }
-  }).mount('#commentApp');
-</script>
+  });
+
+  const commentRoot = document.querySelector('#commentApp');
+  if (commentRoot) {
+    commentApp.mount('#commentApp');
+  }
+  </script>
 </body>
 </html>
