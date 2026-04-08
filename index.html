@@ -19,6 +19,17 @@
   <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
 
   <style>
+    .intro-section {
+      border-radius: 1.25rem;
+      border: 1px solid rgba(20, 18, 16, 0.08);
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 12px 0 rgba(20, 18, 16, 0.05);
+      padding: 2.5rem 1rem;
+      margin: -2rem 1rem 2rem 1rem;
+      position: relative;
+      text-align: center;
+    }
     .toast {
       opacity: 0;
       transform: translateX(-50%) translateY(0);
@@ -29,6 +40,16 @@
       opacity: 1;
       transform: translateX(-50%) translateY(-4px);
     }
+    .rounded-xl2 { border-radius: 1.25rem; }
+    .border-line { border: 1px solid rgba(20, 18, 16, 0.08); }
+    .bg-white-glass { 
+      background: rgba(255, 255, 255, 0.85); 
+      backdrop-filter: blur(10px); 
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .shadow-soft { box-shadow: 0 4px 12px 0 rgba(20, 18, 16, 0.05); }
+    .p-intro { padding: 2.5rem 1rem; }
+    .m-overlap { margin: 2rem 1rem 2rem 1rem; }
   </style>
 
   <script>
@@ -58,21 +79,30 @@
 
 <body class="min-h-screen text-ink font-sans tracking-[-.2px] bg-paper [background:radial-gradient(1200px_700px_at_30%_-10%,rgba(215,169,138,.25),transparent_60%),radial-gradient(900px_520px_at_90%_10%,rgba(169,184,201,.20),transparent_55%),#fbf7f4]">
 
-  <main class="mx-auto w-full max-w-[420px] px-[14px] pt-4 pb-7">
-    <div class="rounded-[28px] border border-[rgba(20,18,16,.06)] bg-white/25 backdrop-blur-md p-3">
+  <main class="mx-auto w-full max-w-[80vh] px-[14px] pb-7">
+    <div class="bg-white/25 backdrop-blur-md ">
 
       <!-- HERO -->
-      <section class="relative overflow-hidden rounded-[28px] border border-[rgba(20,18,16,.12)] shadow-soft bg-zinc-200 mb-4">
+      <section class="relative overflow-hidden rounded-b-[28px] shadow-soft bg-zinc-200">
+
         <img
-          src="src/image/main.png"
+          src="src/image/1280.jpeg"
           alt="cover"
-          class="block w-full h-[520px] object-cover saturate-[1.02] contrast-[1.02]"
+          class="block w-full h-[820px] object-cover saturate-[1.02] contrast-[1.02]"
         />
         <div class="pointer-events-none absolute inset-0 [background:linear-gradient(180deg,rgba(0,0,0,0)_45%,rgba(0,0,0,.50)_100%),radial-gradient(800px_360px_at_50%_25%,rgba(255,255,255,.12),transparent_55%)]"></div>
       </section>
 
       <!-- INTRO -->
-      <section class="rounded-xl2 border border-line bg-white/70 shadow-soft p-4 my-4 text-center">
+      <section class="intro-section">
+        <div class="flex items-baseline justify-center gap-2 text-base">
+          <p class="m-0 text-muted leading-relaxed">
+            긴 <b>산</b>길을 돌아<br />
+            마침내 <b>하나</b>의 길을 찾았습니다.
+          </p>
+      </section>
+
+      <section class="rounded-xl2 border-line bg-white-glass shadow-soft p-intro m-overlap">
         <div class="flex items-baseline justify-center gap-2 text-base">
           <div><strong class="font-extrabold" id="groomName">신랑</strong> <span id="groom">김산</span></div>
           <div class="opacity-50">·</div>
@@ -82,29 +112,10 @@
         <div class="mt-2 mb-1 text-lg font-extrabold" id="dateText">2026년 8월 22일 (토) 오후 5:00</div>
         <p class="m-0 text-sm text-muted" id="venueText">고려대학교 교우회관</p>
 
-        <div class="mt-3 flex flex-wrap justify-center gap-2">
-          <a
-            class="inline-flex items-center justify-center gap-2 px-3 py-[11px] rounded-[14px] border border-[rgba(20,18,16,.12)] bg-white/65 shadow-btn text-[13px] active:translate-y-[1px]"
-            href="#location"
-          >📍 오시는 길</a>
-
-          <button
-            class="inline-flex items-center justify-center gap-2 px-3 py-[11px] rounded-[14px] border border-[rgba(20,18,16,.12)] bg-white/65 shadow-btn text-[13px] active:translate-y-[1px]"
-            type="button"
-            id="copyAddrTop"
-          >📋 주소 복사</button>
-        </div>
-
-        <div class="my-3 h-px bg-[rgba(20,18,16,.08)]"></div>
-
-        <p class="m-0 text-muted leading-relaxed">
-          긴 <b>산</b>길을 돌아<br />
-          마침내 <b>하나</b>의 길을 찾았습니다.
-        </p>
       </section>
 
       <!-- CALENDAR -->
-      <section class="rounded-xl2 border border-line bg-white/70 shadow-soft p-4 my-4">
+      <section class="rounded-xl2 border-line bg-white-glass shadow-soft p-intro m-overlap">
         <div class="flex items-center justify-between mb-2">
           <div class="text-base font-extrabold tracking-[-.3px]">📅 일정</div>
           <small class="text-muted font-medium">달력에 저장</small>
@@ -123,10 +134,9 @@
       </section>
 
       <!-- LOCATION -->
-      <section id="location" class="rounded-xl2 border border-line bg-white/70 shadow-soft p-4 my-4">
+      <section id="location" class="rounded-xl2 border-line bg-white-glass shadow-soft p-intro m-overlap">
         <div class="flex items-center justify-between mb-2">
           <div class="text-base font-extrabold tracking-[-.3px]">📍 오시는 길</div>
-          <small class="text-muted font-medium">지도/길찾기</small>
         </div>
 
         <div class="text-sm text-muted">
@@ -168,7 +178,7 @@
       </section>
 
       <!-- GALLERY -->
-      <section class="rounded-xl2 border border-line bg-white/70 shadow-soft p-4 my-4">
+      <section class="rounded-xl2 border-line bg-white-glass shadow-soft p-intro m-overlap">
         <div class="flex items-center justify-between mb-2">
           <div class="text-base font-extrabold tracking-[-.3px]">🖼️ 갤러리</div>
         </div>
@@ -199,7 +209,7 @@
       </section>
 
       <!-- CONTACT -->
-      <section class="rounded-xl2 border border-line bg-white/70 shadow-soft p-4 my-4">
+      <section class="rounded-xl2 border-line bg-white-glass shadow-soft p-intro m-overlap">
         <div class="flex items-center justify-between mb-2">
           <div class="text-base font-extrabold tracking-[-.3px]">📞 연락처</div>
         </div>
@@ -208,20 +218,32 @@
           <a
             class="inline-flex items-center justify-center gap-2 px-3 py-[11px] rounded-[14px] border border-[rgba(215,169,138,.45)] bg-[rgba(215,169,138,.20)] shadow-btn text-[13px] active:translate-y-[1px]"
             id="callGroom"
-            href="tel:010-4463-5050"
+            href="010-4463-5050"
           >신랑에게</a>
 
           <a
             class="inline-flex items-center justify-center gap-2 px-3 py-[11px] rounded-[14px] border border-[rgba(20,18,16,.12)] bg-white/65 shadow-btn text-[13px] active:translate-y-[1px]"
             id="callBride"
-            href="tel:010-8866-0520"
+            href="010-8866-0520"
           >신부에게</a>
         </div>
       </section>
 
+      <!-- SEND MESSAGE -->
+      <section class="rounded-xl2 border-line bg-white-glass shadow-soft p-intro m-overlap">
+        <div class="flex items-center justify-between mb-2">
+          <div class="text-base font-extrabold tracking-[-.3px]">🔔 드리는 말씀</div>
+        </div>
+        <div class="flex items-baseline justify-center gap-2 text-base">
+          <p class="m-0 text-muted leading-relaxed">
+            장소가 협소한 관계로 화환은 정중히 사양합니다.<br />
+            날씨가 덥습니다. 편한 복장으로 오셔도 감사합니다. <br />
+          </p>
+      </section>
+
       <!-- COMMENT -->
       <section id="commentApp" class="mt-6">
-        <div class="rounded-2xl border border-black/10 bg-white/70 shadow-lg p-4">
+        <div class="rounded-xl2 border-line bg-white-glass shadow-soft p-intro m-overlap">
           <div class="flex items-center justify-between mb-3">
             <h2 class="text-base font-bold tracking-tight">💬 축하 댓글</h2>
             <span class="text-xs text-black/50">{{ comments.length }}개</span>
@@ -332,7 +354,7 @@
           </div>
         </div>
 
-        <div class="space-y-3 mt-4">
+        <div class="rounded-xl2 border-line bg-white-glass shadow-soft p-intro m-overlap">
           <input
             v-model.trim="form.name"
             type="text"
@@ -373,6 +395,45 @@
           <p v-if="successMessage" class="text-sm text-green-600">
             {{ successMessage }}
           </p>
+        </div>
+      </section>
+
+      <!-- MONEY -->
+      <section class="rounded-xl2 border-line bg-white-glass shadow-soft p-intro m-overlap">
+        <div class="flex items-center justify-between mb-2">
+          <div class="text-base font-extrabold tracking-[-.3px]">💌 마음 전하실 곳</div>
+        </div>
+
+        <div class="grid gap-2.5">
+          <details class="rounded-[18px] border border-[rgba(20,18,16,.10)] bg-white/55 p-3">
+            <summary class="cursor-pointer font-extrabold list-none flex items-center justify-between gap-2">
+              <span>신랑측 계좌</span>
+              <span class="text-muted">▾</span>
+            </summary>
+            <div class="mt-2 text-sm text-muted leading-relaxed">
+              카카오뱅크 123-456-789012<br/>
+              예금주: 김산
+              <div class="mt-2 flex flex-wrap gap-2">
+                <button class="px-3 py-2 rounded-[14px] border border-[rgba(20,18,16,.12)] bg-white/70 text-[13px] active:translate-y-[1px]"
+                        type="button" data-copy="카카오뱅크 123-456-789012">📋 복사</button>
+              </div>
+            </div>
+          </details>
+
+          <details class="rounded-[18px] border border-[rgba(20,18,16,.10)] bg-white/55 p-3">
+            <summary class="cursor-pointer font-extrabold list-none flex items-center justify-between gap-2">
+              <span>신부측 계좌</span>
+              <span class="text-muted">▾</span>
+            </summary>
+            <div class="mt-2 text-sm text-muted leading-relaxed">
+              카카오뱅크 3333-08-5864291<br/>
+              예금주: 강하나
+              <div class="mt-2 flex flex-wrap gap-2">
+                <button class="px-3 py-2 rounded-[14px] border border-[rgba(20,18,16,.12)] bg-white/70 text-[13px] active:translate-y-[1px]"
+                        type="button" data-copy="카카오뱅크 3333-08-5864291">📋 복사</button>
+              </div>
+            </div>
+          </details>
         </div>
       </section>
 
