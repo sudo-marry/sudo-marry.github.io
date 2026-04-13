@@ -751,6 +751,12 @@
           this.form.name = '';
           this.form.password = '';
           this.form.comment = '';
+          if (typeof gtag === 'function') {
+            gtag('event', 'submit_comment', {
+              event_category: 'submit_comment',
+              event_label: '댓글 등록 성공'
+            });
+          }
 
           await this.fetchComments();
         } catch (err) {
@@ -884,5 +890,6 @@
     commentApp.mount('#commentApp');
   }
   </script>
+  <script src="ga4-event.js"></script>
 </body>
 </html>
