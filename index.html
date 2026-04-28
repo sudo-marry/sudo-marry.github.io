@@ -21,14 +21,14 @@
 
   <style>
     :root {
-      --summer-light_blue: #c8e2f0;
-      --summer-blue:  #a3d8f4;
-      --summer-light_blue-dark: #59b5cc;
-      --summer-blue-dark: #6ec1e4;
-      --summer-text: #22577a;
-      --summer-muted: #4e8098;
-      --summer-border: #8bb3ad;
-      --summer-white-glass: rgba(255,255,255,0.85);
+      --summer-light_blue: #F8F6F0;
+      --summer-blue:  #F8F6F0;
+      --summer-light_blue-dark: #d6c3c0;
+      --summer-blue-dark: #ebe1cef1;
+      --summer-text: #c0bab6;
+      --summer-muted: #a1928f;
+      --summer-border: #7a6d6b;
+      --summer-white-glass: #ffffffd9;
     }
     body {
       background: linear-gradient(135deg, var(--summer-light_blue) 10%, var(--summer-blue) 10%);
@@ -125,8 +125,10 @@
       <section class="intro-section">
         <div class="flex items-baseline justify-center gap-2 text-base">
           <p class="m-0 text-muted leading-relaxed">
-            긴 <b>산</b>길을 돌아<br />
-            마침내 <b>하나</b>의 길을 찾았습니다.
+            긴 <b>산</b>길을 함께 걸어 갈<br />
+            단 <b>하나</b>의 사람을 찾았습니다.
+            <!-- 긴 <b>산</b>길을 돌아<br />
+            마침내 <b>하나</b>의 길을 찾았습니다. -->
           </p>
       </section>
 
@@ -442,12 +444,14 @@
               <span>신랑측 계좌</span>
               <span class="text-muted">▾</span>
             </summary>
-            <div class="mt-2 text-sm text-muted leading-relaxed">
-              카카오뱅크 123-456-789012<br/>
-              예금주: 김산
-              <div class="mt-2 flex flex-wrap gap-2">
+            <div class="grid grid-cols-2 gap-2.5 mt-2 text-sm text-muted leading-relaxed">
+              <div>
+                카카오뱅크 3333-13-1356116<br/>
+                예금주: 김산
+              </div>
+              <div class="col-span-1 mt-2 flex flex-wrap gap-2">
                 <button class="btn-summer"
-                        type="button" data-copy="카카오뱅크 123-456-789012"
+                        type="button" data-copy="카카오뱅크 3333131356116"
                         id="copyGroomBank">📋 복사</button>
               </div>
             </div>
@@ -458,12 +462,14 @@
               <span>신부측 계좌</span>
               <span class="text-muted">▾</span>
             </summary>
-            <div class="mt-2 text-sm text-muted leading-relaxed">
-              카카오뱅크 3333-08-5864291<br/>
-              예금주: 강하나
-              <div class="mt-2 flex flex-wrap gap-2">
+            <div class="grid grid-cols-2 gap-2.5 mt-2 text-sm text-muted leading-relaxed">
+              <div>
+                카카오뱅크 3333-08-5864291<br/>
+                예금주: 강하나
+              </div>
+              <div class="col-span-1 mt-2 flex flex-wrap gap-2">
                 <button class="btn-summer"
-                        type="button" data-copy="카카오뱅크 3333-08-5864291"
+                        type="button" data-copy="카카오뱅크 3333085864291"
                         id="copyBrideBank">📋 복사</button>
               </div>
             </div>
