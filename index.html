@@ -77,8 +77,8 @@
       background: var(--summer-light_blue-dark);
     }
     .shadow-soft { box-shadow: 0 4px 12px 0 rgba(34, 39, 49, 0.05); }
-    .p-intro { padding: 2.5rem 1rem; }
-    .m-overlap { margin: 2rem 1rem 2rem 1rem; }
+    .p-intro { padding: 2.5rem 2rem; }
+    .m-overlap { margin: 3rem 2rem 2rem 2rem; }
   </style>
 
   <script>
@@ -134,9 +134,9 @@
 
       <!-- GROOM/BGIDE INFO -->
       <section class="rounded-xl2 border-line bg-white-glass shadow-soft p-intro m-overlap">
-        <div class="tracking-[0.2em] text-gray-400 text-sm mb-4 font-serif">INVITATION</div>
+        <div class="tracking-[0.2em] text-gray-400 text-sm mb-4 font-serif text-center">INVITATION</div>
   
-          <h2 class="text-xl font-medium text-gray-800 mb-10 text-center">
+          <h2 class="text-xl font-medium text-gray-800 mb-10 font-bold text-center">
             소중한 분들을 초대합니다
           </h2>
 
@@ -170,29 +170,36 @@
       </section>
 
       <!-- CALENDAR -->
-      <section class="rounded-xl2 border-line bg-white-glass shadow-soft p-intro m-overlap">
+      <section class="rounded-xl2 border-line bg-white-glass shadow-soft p-intro m-overlap text-center">
         <div class="tracking-[0.2em] text-gray-400 text-sm mb-4 font-serif">DATE</div>
-        <div class="flex items-center justify-between mb-2">
-          <h2 class="text-xl font-medium text-gray-800 mb-10 text-center">일정</h2>
+        <div class="justify-between mb-2">
+          <h2 class="text-xl font-medium text-gray-800 mb-10 font-bold">일정</h2>
         </div>
 
         <div class="px-2 pt-2 pb-1">
-          <div class="flex items-center justify-between gap-2 mb-2">
+          <div class="justify-between gap-2 mb-2">
             <div>
-              <div class="font-black tracking-[-.4px]" id="calTitle">2026년 8월</div>
+              <div class="font-black tracking-[-.4px]" id="calTitle">2026년 8월 22일</div>
+              <div class="font-black tracking-[-.4px]" id="calTitle">토요일 오후 5시</div>
             </div>
           </div>
 
-          <div class="grid grid-cols-7 gap-2" id="calDow"></div>
+          <hr class="border-dashed border-gray-200 my-8">
+
+          <div class="grid grid-cols-7 gap-2 p-4" id="calDow"></div>
           <div class="grid grid-cols-7 gap-2 mt-2" id="calDays"></div>
+
+          <hr class="border-dashed border-gray-200 my-8">
+          
+          <div> 산, 하나의 결혼식이 <p id="dDay" class="font-bold"></p>일 남았습니다. </div>
         </div>
       </section>
 
       <!-- LOCATION -->
-      <section id="location" class="rounded-xl2 border-line bg-white-glass shadow-soft p-intro m-overlap">
+      <section id="location" class="rounded-xl2 border-line bg-white-glass shadow-soft p-intro m-overlap text-center">
         <div class="tracking-[0.2em] text-gray-400 text-sm mb-4 font-serif">LOCATION</div>
-        <div class="flex items-center justify-between mb-2">
-          <div class="text-xl font-medium text-gray-800 mb-10 text-center">오시는 길</div>
+        <div class="justify-between mb-2">
+          <h2 class="text-xl font-medium text-gray-800 mb-10 font-bold">오시는 길</h2>
         </div>
 
         <div class="text-sm text-muted">
@@ -214,10 +221,10 @@
         
         <div class="flex gap-2">
           <a id="naverOpen" href="#" class="flex-1 flex items-center justify-center gap-2 py-3 border border-gray-200 rounded-xl text-sm font-medium hover:bg-gray-50 transition">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/b/be/Naver_Logotype.svg" class="w-4 h-4" alt=""> 네이버 지도
+            <img src="src/image/naver_map.png" class="w-4 h-4" alt="naver_map"> 네이버 지도
           </a>
           <a id="kakaoOpen" href="#" class="flex-1 flex items-center justify-center gap-2 py-3 border border-gray-200 rounded-xl text-sm font-medium hover:bg-gray-50 transition">
-            <span class="w-4 h-4 bg-yellow-400 rounded-sm"></span> 카카오내비
+            <img src="src/image/kakao_map.png" class="w-4 h-4" alt="naver_map"> 카카오 지도
           </a>
           <button id="copyAddressButton" class="flex-1 py-3 border border-gray-200 rounded-xl text-sm font-medium hover:bg-gray-50 transition">
             주소 복사
@@ -227,7 +234,7 @@
 
       <hr class="border-dashed border-gray-200 my-8">
 
-      <div class="mb-8">
+      <div class="mb-8 text-left">
         <div class="text-sm font-bold text-gray-800 mb-4">지하철</div>
         <div class="space-y-3">
           <div class="flex items-center gap-3">
@@ -239,7 +246,7 @@
 
       <hr class="border-dashed border-gray-200 my-8">
 
-      <div class="mb-8">
+      <div class="mb-8 text-left">
         <div class="text-sm font-bold text-gray-800 mb-4">버스</div>
         <div class="space-y-3">
           <div class="flex items-center gap-3">
@@ -255,10 +262,10 @@
       </section>
 
       <!-- GALLERY -->
-      <section class="rounded-xl2 border-line bg-white-glass shadow-soft p-intro m-overlap">
+      <section class="rounded-xl2 border-line bg-white-glass shadow-soft p-intro m-overlap text-center">
         <div class="tracking-[0.2em] text-gray-400 text-sm mb-4 font-serif">PHOTO</div>
-        <div class="flex items-center justify-between mb-2">
-          <div class="text-xl font-medium text-gray-800 mb-10 text-center">사진</div>
+        <div class="justify-between mb-2">
+          <div class="text-xl font-medium text-gray-800 mb-10 text-center font-bold">사진</div>
         </div>
 
         <div class="grid grid-cols-2 gap-2.5">
@@ -287,32 +294,37 @@
       </section>
 
       <!-- CONTACT -->
-      <section class="rounded-xl2 border-line bg-white-glass shadow-soft p-intro m-overlap">
+      <section class="rounded-xl2 border-line bg-white-glass shadow-soft p-intro m-overlap text-center">
         <div class="tracking-[0.2em] text-gray-400 text-sm mb-4 font-serif">CONTACT</div>
-        <div class="flex items-center justify-between mb-2">
-          <div class="text-xl font-medium text-gray-800 mb-10 text-center">연락처</div>
+        <div class="justify-between mb-2">
+          <div class="text-xl font-medium text-gray-800 mb-10 font-bold">연락처</div>
         </div>
 
-        <div class="mt-2 flex flex-wrap justify-center gap-2">
-          <a
-            class="inline-flex items-center justify-center gap-2 px-3 py-[11px] rounded-[14px] border border-[rgba(215,169,138,.45)] bg-[rgba(215,169,138,.20)] shadow-btn text-[13px] active:translate-y-[1px]"
-            id="callGroom"
-            href="010-4463-5050"
-          >신랑측</a>
-
-          <a
-            class="inline-flex items-center justify-center gap-2 px-3 py-[11px] rounded-[14px] border border-[rgba(20,18,16,.12)] bg-white/65 shadow-btn text-[13px] active:translate-y-[1px]"
-            id="callBride"
-            href="010-8866-0520"
-          >신부측</a>
+        <div class="grid gap-2.5">
+          <div class="flex items-center justify-between gap-2.5 mt-2 text-m leading-relaxed">
+            <div>
+              신랑 김산 010-4463-5050
+            </div>
+            <div class="col-span-1 mt-2 flex flex-wrap gap-2">
+              <button class="btn-summer" type="button" data-copy="01044635050" id="callGroom">복사</button>
+            </div>
+          </div>
+          <div class="flex items-center justify-between gap-2.5 mt-2 text-m leading-relaxed">
+            <div>
+              신부 강하나 010-8866-0520
+            </div>
+            <div class="col-span-1 mt-2 flex flex-wrap gap-2">
+              <button class="btn-summer" type="button" data-copy="01088660520" id="callBride">복사</button>
+            </div>
+           </div>
         </div>
       </section>
 
       <!-- SEND MESSAGE -->
-      <section class="rounded-xl2 border-line bg-white-glass shadow-soft p-intro m-overlap">
+      <section class="rounded-xl2 border-line bg-white-glass shadow-soft p-intro m-overlap text-center">
         <div class="tracking-[0.2em] text-gray-400 text-sm mb-4 font-serif">SEND MESSAGE</div>
-        <div class="flex items-center justify-between mb-2">
-          <div class="text-xl font-medium text-gray-800 mb-10 text-center">드리는 말씀</div>
+        <div class="justify-between mb-2">
+          <div class="text-xl font-medium text-gray-800 mb-10 font-bold">드리는 말씀</div>
         </div>
         <div class="flex items-baseline justify-center gap-2 text-base">
           <p class="m-0 text-muted leading-relaxed">
@@ -322,11 +334,12 @@
       </section>
 
       <!-- COMMENT -->
-      <section id="commentApp" class="rounded-xl2 border-line bg-white-glass shadow-soft p-intro m-overlap">
+      <section id="commentApp" class="rounded-xl2 border-line bg-white-glass shadow-soft p-intro m-overlap text-center">
         <div class="mb-8">
           <div class="tracking-[0.2em] text-gray-400 text-sm mb-4 font-serif">GUEST BOARD</div>
           <div class="flex items-center justify-between mb-3">
-            <div class="text-xl font-medium text-gray-800 mb-10 text-center">축하 말씀</div>
+            <div></div>
+            <div class="text-xl font-medium text-gray-800 mb-10 font-bold">축하 말씀</div>
             <span class="text-xs text-black/50">{{ comments.length }}개</span>
           </div>
 
@@ -480,10 +493,10 @@
       </section>
 
       <!-- MONEY -->
-      <section class="rounded-xl2 border-line bg-white-glass shadow-soft p-intro m-overlap">
+      <section class="rounded-xl2 border-line bg-white-glass shadow-soft p-intro m-overlap text-center">
         <div class="tracking-[0.2em] text-gray-400 text-sm mb-4 font-serif">ACCOUNT</div>
-        <div class="flex items-center justify-between mb-2">
-          <div class="text-xl font-medium text-gray-800 mb-10 text-center">마음 전하실 곳</div>
+        <div class="justify-between mb-2">
+          <div class="text-xl font-medium text-gray-800 mb-10 font-bold">마음 전하실 곳</div>
         </div>
         <div class="m-0 text-muted leading-relaxed p-4">
           참석이 어려우신 분들을 위해 <br>
@@ -496,7 +509,7 @@
               <span>신랑측 계좌</span>
               <span class="text-muted">▾</span>
             </summary>
-            <div class="grid grid-cols-2 gap-2.5 mt-2 text-sm text-muted leading-relaxed">
+            <div class="flex items-center justify-between gap-2.5 mt-2 text-sm text-muted leading-relaxed">
               <div>
                 카카오뱅크 3333-13-1356116<br/>
                 예금주: 김산
@@ -514,7 +527,7 @@
               <span>신부측 계좌</span>
               <span class="text-muted">▾</span>
             </summary>
-            <div class="grid grid-cols-2 gap-2.5 mt-2 text-sm text-muted leading-relaxed">
+            <div class="flex items-center justify-between gap-2.5 mt-2 text-sm text-muted leading-relaxed">
               <div>
                 카카오뱅크 3333-08-5864291<br/>
                 예금주: 강하나
@@ -690,6 +703,23 @@
         calDays.appendChild(el);
       }
     }
+
+    function getDday(targetDateStr) {
+      const today = new Date();
+      const target = new Date(targetDateStr);
+      // 오늘 0시 기준, 타겟 0시 기준으로 계산
+      today.setHours(0,0,0,0);
+      target.setHours(0,0,0,0);
+      const diff = Math.ceil((target - today) / (1000 * 60 * 60 * 24));
+      return diff;
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      const dday = getDday('2026-08-22');
+      const ddayDiv = document.getElementById('dDay');
+      if (ddayDiv) {
+        ddayDiv.textContent = dday > 0 ? `D-${dday}` : (dday === 0 ? 'D-DAY' : `D+${Math.abs(dday)}`);
+      }
+    });
 
     function makeICS(startLocal){
       const startUtc = new Date(startLocal.getTime() - startLocal.getTimezoneOffset()*60000);
