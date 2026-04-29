@@ -44,8 +44,8 @@
       background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(10px);
       box-shadow: 0 4px 12px 0 rgba(20, 18, 16, 0.05);
-      padding: 2.5rem 2rem;
-      margin: -2rem 2rem 2rem 2rem;
+      padding: 2.5rem 0rem;
+      margin: -2rem 1rem 2rem 1rem;
       position: relative;
       text-align: center;
     }
@@ -67,14 +67,14 @@
       background: var(--summer-white-glass);
     }
     .btn-summer {
-      background: var(--summer-light_blue);
+      background: var(--summer-blue-dark);
       color: black;
       border-radius: 0.5rem;
       padding: 0.5rem 1.2rem;
       transition: background 0.2s;
     }
     .btn-summer:hover {
-      background: var(--summer-light_blue-dark);
+      background: var(--summer-muted);
     }
     .shadow-soft { box-shadow: 0 4px 12px 0 rgba(34, 39, 49, 0.05); }
     .p-intro { padding: 2rem 1.5rem; }
@@ -113,11 +113,7 @@
 
       <!-- HERO -->
       <section class="relative overflow-hidden rounded-b-[28px] shadow-soft bg-zinc-200">
-        <img
-          src="src/image/snow_footprint.jpg"
-          alt="cover"
-          class="block w-full h-[820px] object-cover saturate-[1.02] contrast-[1.02]"
-        />
+        <img src="src/image/snow_footprint.jpg" alt="cover" class="block w-full h-[720px] object-cover saturate-[1.02] contrast-[1.02]"/>
         <div class="pointer-events-none absolute inset-0 [background:linear-gradient(180deg,rgba(0,0,0,0)_45%,rgba(0,0,0,.50)_100%),radial-gradient(800px_360px_at_50%_25%,rgba(255,255,255,.12),transparent_55%)]"></div>
       </section>
 
@@ -179,8 +175,8 @@
         <div class="px-2 pt-2 pb-1">
           <div class="justify-between gap-2 mb-2">
             <div>
-              <div class="font-black tracking-[-.4px]" id="calTitle">2026년 8월 22일</div>
-              <div class="font-black tracking-[-.4px]" id="calTitle">토요일 오후 5시</div>
+              <div class="font-black" id="calTitle">결혼식 날짜 표기</div>
+              <div class="font-black" id="calTitle">토요일 오후 5시</div>
             </div>
           </div>
 
@@ -214,6 +210,18 @@
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3161.56453!2d127.0354!3d37.59!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDM1JzI0LjAiTiAxMjfCsDAyJzA3LjQiRQ!5e0!3m2!1sko!2skr!4v1620000000000!5m2!1sko!2skr"
           ></iframe>
         </div>
+        
+        <hr class="border-dashed border-gray-200 my-8">
+        <!-- 약도 보기 버튼 -->
+        <button id="openMapBtn" class="btn-summer">약도 보기</button>
+  
+        <!-- 팝업 모달 -->
+        <div id="mapModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+          <div class="bg-white rounded-lg p-6 relative max-w-md w-full">
+            <button id="closeMapBtn" class="absolute top-2 right-2 text-gray-500 hover:text-gray-800 text-xl">&times;</button>
+            <img src="src/image/location.png" alt="약도" class="w-full h-auto rounded" />
+          </div>
+        </div>
 
         <hr class="border-dashed border-gray-200 my-8">
         
@@ -242,22 +250,23 @@
           <div class="flex items-center gap-3">
             <span class="w-4 h-4 rounded-full bg-[#747F28]"></span> <span class="text-sm text-gray-700"><strong>6호선 고려대역</strong> 2번 출구</span>
           </div>
-          <div class="pl-7 text-xs text-gray-400">· 좌측 방향 500M 도보 후 위치</div>
+          <div class="pl-7 text-sm">· 500M 도보 직진 후 좌측 위치</div>
         </div>
       </div>
 
       <hr class="border-dashed border-gray-200 my-8">
 
       <div class="mb-8 text-left">
-        <div class="text-sm font-bold text-gray-800 mb-4">버스</div>
+        <div class="text-sm font-bold text-gray-800">버스</div>
+        <div class="pl-7 text-sm mb-4">· 고려대학교 앞 / 숭례초등학교 하차</div>
         <div class="space-y-3">
           <div class="flex items-center gap-3">
             <span class="w-4 h-4 rounded-full bg-blue-600"></span>
-            <span class="text-sm text-gray-700">간선버스 : 101, 144, 163</span>
+            <span class="text-sm text-gray-700">간선버스 : 101, 144, 173 등</span>
           </div>
           <div class="flex items-center gap-3">
             <span class="w-4 h-4 rounded-full bg-green-500"></span>
-            <span class="text-sm text-gray-700">지선버스 : 1017, 1111</span>
+            <span class="text-sm text-gray-700">지선버스 : 111, 1017, 1111, 7211 등</span>
           </div>
         </div>
       </div>
@@ -270,6 +279,9 @@
           <div class="text-xl font-medium text-gray-800 mb-10 text-center font-bold">사진</div>
         </div>
 
+        <div>6월 중 업데이트 예정</div>
+        <div class="my-3 h-px bg-[rgba(20,18,16,.08)]"></div>
+
         <div class="grid grid-cols-2 gap-2.5">
           <div class="relative overflow-hidden rounded-[18px] border border-[rgba(20,18,16,.10)] bg-white/50 aspect-square">
             <img class="w-full h-full object-cover block" src="src/image/IMG_0456.png" alt="g1">
@@ -277,22 +289,22 @@
           </div>
 
           <div class="relative overflow-hidden rounded-[18px] border border-[rgba(20,18,16,.10)] bg-white/50 aspect-square">
-            <img class="w-full h-full object-cover block" src="src/image/IMG_5812.png" alt="g2">
+            <img class="w-full h-full object-cover block" src="src/image/IMG_1688.png" alt="g2">
             <div class="pointer-events-none absolute inset-0 [background:linear-gradient(180deg,rgba(0,0,0,0)_60%,rgba(0,0,0,.18))]"></div>
           </div>
 
-          <div class="relative overflow-hidden rounded-[18px] border border-[rgba(20,18,16,.10)] bg-white/50 aspect-square">
-            <img class="w-full h-full object-cover block" src="src/image/IMG_1688.png" alt="g3">
+          <!-- <div class="relative overflow-hidden rounded-[18px] border border-[rgba(20,18,16,.10)] bg-white/50 aspect-square">
+            <img class="w-full h-full object-cover block" src="src/image/IMG_5812.png" alt="g3">
             <div class="pointer-events-none absolute inset-0 [background:linear-gradient(180deg,rgba(0,0,0,0)_60%,rgba(0,0,0,.18))]"></div>
           </div>
 
           <div class="relative overflow-hidden rounded-[18px] border border-[rgba(20,18,16,.10)] bg-white/50 aspect-square">
             <img class="w-full h-full object-cover block" src="src/image/IMG_0346.png" alt="g4">
             <div class="pointer-events-none absolute inset-0 [background:linear-gradient(180deg,rgba(0,0,0,0)_60%,rgba(0,0,0,.18))]"></div>
-          </div>
+          </div> -->
         </div>
 
-        <div class="my-3 h-px bg-[rgba(20,18,16,.08)]"></div>
+        
       </section>
 
       <!-- CONTACT -->
@@ -330,18 +342,18 @@
         </div>
         <div class="flex items-baseline justify-center gap-2 text-base">
           <p class="m-0 text-muted leading-relaxed">
-            장소가 협소한 관계로 <br> 화환은 정중히 사양합니다.<br />
-            무더운 날씨가 예상됩니다. <br> 가벼운 복장으로도 감사합니다. <br />
+            · 장소가 협소한 관계로 <br> 화환은 정중히 사양합니다.<br />
+            · 무더운 날씨가 예상됩니다. <br> 가벼운 복장으로도 감사합니다. <br />
           </p>
       </section>
 
       <!-- COMMENT -->
       <section id="commentApp" class="rounded-xl2 border-line bg-white-glass shadow-soft p-intro m-overlap text-center">
         <div class="mb-8">
-          <div class="tracking-[0.2em] text-gray-400 text-sm mb-4 font-serif">GUEST BOARD</div>
+          <div class="tracking-[0.2em] text-gray-400 text-sm mb-4 font-serif">GUEST BOOK</div>
           <div class="flex items-center justify-between mb-3">
             <div></div>
-            <div class="text-xl font-medium text-gray-800 mb-10 font-bold">축하 말씀</div>
+            <div class="text-xl font-medium text-gray-800 mb-10 font-bold">방명록</div>
             <span class="text-xs text-black/50">{{ comments.length }}개</span>
           </div>
 
@@ -350,14 +362,14 @@
               v-if="loadingList"
               class="rounded-2xl border border-dashed border-black/10 bg-white/60 px-4 py-6 text-center text-sm text-black/50"
             >
-              댓글 불러오는 중...
+              글 불러오는 중...
             </div>
 
             <div
               v-else-if="comments.length === 0"
               class="rounded-2xl border border-dashed border-black/10 bg-white/60 px-4 py-6 text-center text-sm text-black/50"
             >
-              아직 댓글이 없어요.
+              아직 글이 없어요.
             </div>
 
             <div
@@ -401,8 +413,8 @@
                   v-model.trim="editForm.comment"
                   rows="4"
                   maxlength="500"
-                  class="w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm outline-none resize-none focus:border-[#d7a98a] focus:ring-4 focus:ring-[#d7a98a]/15"
-                  placeholder="댓글 내용을 수정해주세요"
+                  class="w-full rounded-xl border border-black/10 bg-white p-3 mb-3 text-sm outline-none resize-none focus:border-[#d7a98a] focus:ring-4 focus:ring-[#d7a98a]/15"
+                  placeholder="글 내용을 수정해주세요"
                 ></textarea>
 
                 <input
@@ -410,7 +422,7 @@
                   type="password"
                   maxlength="100"
                   placeholder="비밀번호 입력"
-                  class="w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm outline-none focus:border-[#d7a98a] focus:ring-4 focus:ring-[#d7a98a]/15"
+                  class="w-full rounded-xl border border-black/10 bg-white p-3 mb-3 text-sm outline-none focus:border-[#d7a98a] focus:ring-4 focus:ring-[#d7a98a]/15"
                 />
 
                 <div class="flex gap-2">
@@ -418,7 +430,7 @@
                     type="button"
                     @click="updateComment(item.id)"
                     :disabled="loadingAction"
-                    class="flex-1 rounded-xl bg-[#d7a98a] px-4 py-3 text-sm font-semibold text-white transition active:translate-y-px disabled:opacity-60"
+                    class="flex-1 rounded-xl bg-[#d7a98a] p-3 mb-3 text-sm font-semibold text-white transition active:translate-y-px disabled:opacity-60"
                   >
                     {{ loadingAction ? '처리 중...' : '수정 저장' }}
                   </button>
@@ -427,7 +439,7 @@
                     type="button"
                     @click="deleteComment(item.id)"
                     :disabled="loadingAction"
-                    class="flex-1 rounded-xl bg-red-500 px-4 py-3 text-sm font-semibold text-white transition active:translate-y-px disabled:opacity-60"
+                    class="flex-1 rounded-xl bg-red-500 p-3 mb-3 text-sm font-semibold text-white transition active:translate-y-px disabled:opacity-60"
                   >
                     삭제
                   </button>
@@ -436,7 +448,7 @@
                     type="button"
                     @click="cancelEdit"
                     :disabled="loadingAction"
-                    class="rounded-xl border border-black/10 bg-white px-4 py-3 text-sm font-semibold text-black/70 transition active:translate-y-px disabled:opacity-60"
+                    class="rounded-xl border border-black/10 bg-white p-3 mb-3 text-sm font-semibold text-black/70 transition active:translate-y-px disabled:opacity-60"
                   >
                     취소
                   </button>
@@ -456,7 +468,7 @@
             type="text"
             maxlength="50"
             placeholder="이름"
-            class="w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm outline-none focus:border-[#d7a98a] focus:ring-4 focus:ring-[#d7a98a]/15"
+            class="w-full rounded-xl border border-black/10 bg-white p-3 mb-3 text-sm outline-none focus:border-[#d7a98a] focus:ring-4 focus:ring-[#d7a98a]/15"
           />
 
           <input
@@ -464,7 +476,7 @@
             type="password"
             maxlength="100"
             placeholder="비밀번호"
-            class="w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm outline-none focus:border-[#d7a98a] focus:ring-4 focus:ring-[#d7a98a]/15"
+            class="w-full rounded-xl border border-black/10 bg-white p-3 mb-3 text-sm outline-none focus:border-[#d7a98a] focus:ring-4 focus:ring-[#d7a98a]/15"
           />
 
           <textarea
@@ -472,7 +484,7 @@
             maxlength="500"
             rows="4"
             placeholder="축하 메시지를 남겨주세요"
-            class="w-full rounded-xl border border-black/10 bg-white px-4 py-3 text-sm outline-none resize-none focus:border-[#d7a98a] focus:ring-4 focus:ring-[#d7a98a]/15"
+            class="w-full rounded-xl border border-black/10 bg-white p-3 mb-3 text-sm outline-none resize-none focus:border-[#d7a98a] focus:ring-4 focus:ring-[#d7a98a]/15"
           ></textarea>
 
           <button
@@ -481,7 +493,7 @@
             :disabled="loadingSubmit"
             class="btn-summer"
           >
-            {{ loadingSubmit ? '등록 중...' : '댓글 등록' }}
+            {{ loadingSubmit ? '등록 중...' : '글 작성하기' }}
           </button>
 
           <p v-if="errorMessage" class="text-sm text-red-500">
@@ -520,7 +532,7 @@
               <div class="col-span-1 mt-2 flex flex-wrap gap-2">
                 <button class="btn-summer"
                         type="button" data-copy="카카오뱅크 3333131356116"
-                        id="copyGroomBank">📋 복사</button>
+                        id="copyGroomBank">복사</button>
               </div>
             </div>
           </details>
@@ -538,7 +550,7 @@
               <div class="col-span-1 mt-2 flex flex-wrap gap-2">
                 <button class="btn-summer"
                         type="button" data-copy="카카오뱅크 3333085864291"
-                        id="copyBrideBank">📋 복사</button>
+                        id="copyBrideBank">복사</button>
               </div>
             </div>
           </details>
@@ -649,7 +661,7 @@
       el.addEventListener("click", ()=>copyText(el.getAttribute("data-copy")));
     });
 
-    setText("calTitle", `${CONFIG.datetime.year}년 ${CONFIG.datetime.month}월`);
+    setText("calTitle", `${CONFIG.datetime.year}년 ${CONFIG.datetime.month}월 ${CONFIG.datetime.day}일`);
 
     const calDow = document.getElementById("calDow");
     const calDays = document.getElementById("calDays");
@@ -771,6 +783,24 @@
 
     const gcalBtn = document.getElementById("gcalBtn");
     if(gcalBtn) gcalBtn.href = googleCalLink(dt);
+
+    // 약도 팝업
+    const openBtn = document.getElementById('openMapBtn');
+    const closeBtn = document.getElementById('closeMapBtn');
+    const modal = document.getElementById('mapModal');
+
+    openBtn.addEventListener('click', () => {
+      modal.classList.remove('hidden');
+    });
+
+    closeBtn.addEventListener('click', () => {
+      modal.classList.add('hidden');
+    });
+
+    // ESC 키로도 닫기
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') modal.classList.add('hidden');
+    });
   </script>
 
   <script>
@@ -812,19 +842,19 @@
           const res = await fetch(this.apiBase);
 
           if (!res.ok) {
-            throw new Error('댓글 목록을 불러오지 못했습니다.');
+            throw new Error('글 목록을 불러오지 못했습니다.');
           }
 
           const data = await res.json();
 
           if (!Array.isArray(data)) {
-            throw new Error('댓글 응답 형식이 올바르지 않습니다.');
+            throw new Error('글 응답 형식이 올바르지 않습니다.');
           }
 
           this.comments = data;
         } catch (err) {
           console.error(err);
-          this.errorMessage = err.message || '댓글 조회 중 오류가 발생했습니다.';
+          this.errorMessage = err.message || '글 조회 중 오류가 발생했습니다.';
         } finally {
           this.loadingList = false;
         }
@@ -845,7 +875,7 @@
         }
 
         if (!this.form.comment) {
-          this.errorMessage = '댓글 내용을 입력해주세요.';
+          this.errorMessage = '글 내용을 입력해주세요.';
           return;
         }
 
@@ -867,24 +897,24 @@
           const data = await res.json().catch(() => ({}));
 
           if (!res.ok) {
-            throw new Error(data.message || '댓글 등록에 실패했습니다.');
+            throw new Error(data.message || '글 등록에 실패했습니다.');
           }
 
-          this.successMessage = '댓글이 등록되었어요.';
+          this.successMessage = '글이 등록되었어요.';
           this.form.name = '';
           this.form.password = '';
           this.form.comment = '';
           if (typeof gtag === 'function') {
             gtag('event', 'submit_comment', {
               event_category: 'submit_comment',
-              event_label: '댓글 등록 성공'
+              event_label: '글 등록 성공'
             });
           }
 
           await this.fetchComments();
         } catch (err) {
           console.error(err);
-          this.errorMessage = err.message || '댓글 등록 중 오류가 발생했습니다.';
+          this.errorMessage = err.message || '글 등록 중 오류가 발생했습니다.';
         } finally {
           this.loadingSubmit = false;
         }
@@ -909,7 +939,7 @@
         this.successMessage = '';
 
         if (!this.editForm.comment) {
-          this.errorMessage = '수정할 댓글 내용을 입력해주세요.';
+          this.errorMessage = '수정할 글 내용을 입력해주세요.';
           return;
         }
 
@@ -935,15 +965,15 @@
           const data = await res.json().catch(() => ({}));
 
           if (!res.ok) {
-            throw new Error(data.message || '댓글 수정에 실패했습니다.');
+            throw new Error(data.message || '글 수정에 실패했습니다.');
           }
 
-          this.successMessage = '댓글이 수정되었어요.';
+          this.successMessage = '글이 수정되었어요.';
           this.cancelEdit();
           await this.fetchComments();
         } catch (err) {
           console.error(err);
-          this.errorMessage = err.message || '댓글 수정 중 오류가 발생했습니다.';
+          this.errorMessage = err.message || '글 수정 중 오류가 발생했습니다.';
         } finally {
           this.loadingAction = false;
         }
@@ -958,7 +988,7 @@
           return;
         }
 
-        const ok = window.confirm('이 댓글을 삭제할까요?');
+        const ok = window.confirm('이 글을 삭제할까요?');
         if (!ok) return;
 
         this.loadingAction = true;
@@ -977,15 +1007,15 @@
           const data = await res.json().catch(() => ({}));
 
           if (!res.ok) {
-            throw new Error(data.message || '댓글 삭제에 실패했습니다.');
+            throw new Error(data.message || '글 삭제에 실패했습니다.');
           }
 
-          this.successMessage = '댓글이 삭제되었어요.';
+          this.successMessage = '글이 삭제되었어요.';
           this.cancelEdit();
           await this.fetchComments();
         } catch (err) {
           console.error(err);
-          this.errorMessage = err.message || '댓글 삭제 중 오류가 발생했습니다.';
+          this.errorMessage = err.message || '글 삭제 중 오류가 발생했습니다.';
         } finally {
           this.loadingAction = false;
         }
