@@ -57,6 +57,84 @@
       opacity: 1;
       transform: translateX(-50%) translateY(-4px);
     }
+    .gallery-modal {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      min-height: 100%;
+      z-index: 60;
+      align-items: flex-start;
+      justify-content: center;
+      background: rgba(255,255,255,0.6);
+      padding: 1.5rem 0;
+      overflow: visible;
+    }
+    .gallery-modal.show {
+      display: flex;
+    }
+    .gallery-modal-content {
+      position: relative;
+      width: 800px;
+      max-width: 100%;
+      max-height: calc(100vh - 3rem);
+      margin-top: 1rem;
+      border-radius: 1.25rem;
+      overflow: hidden;
+      background: #acc9b6;
+      box-shadow: 0 24px 60px rgba(20,18,16,0.15);
+    }
+    .gallery-modal-image {
+      width: 800px;
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+    .gallery-modal-close,
+    .gallery-modal-prev,
+    .gallery-modal-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      border: none;
+      background: rgba(0,0,0,0.08);
+      color: #111;
+      width: 44px;
+      height: 44px;
+      border-radius: 9999px;
+      font-size: 20px;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+    }
+    .gallery-modal-close {
+      top: 16px;
+      right: 16px;
+      transform: none;
+      width: 36px;
+      height: 36px;
+      font-size: 18px;
+      background: rgba(255,255,255,0.9);
+    }
+    .gallery-modal-prev {
+      left: 16px;
+    }
+    .gallery-modal-next {
+      right: 16px;
+    }
+    .gallery-modal-caption {
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 0.4rem 0.9rem;
+      border-radius: 9999px;
+      background: rgba(0,0,0,0.42);
+      color: #fff;
+      font-size: 13px;
+      letter-spacing: 0.02em;
+    }
     .rounded-xl2 { border-radius: 1.25rem; }
     .border-line {
       border: 1.5px solid var(--summer-border);
@@ -111,7 +189,7 @@
 
       <!-- HERO -->
       <section class="relative overflow-hidden rounded-b-[28px] ">
-        <img src="src/image/snow_footprint.jpg" alt="cover" class="block w-full h-[720px] object-cover"/>
+        <img src="src/image/2.jpg" alt="cover" class="block w-full h-[720px] object-cover"/>
         <div class="pointer-events-none absolute inset-0"></div>
       </section>
 
@@ -280,39 +358,102 @@
       </section>
 
       <!-- GALLERY -->
-      <section class="rounded-xl2 border-line bg-white-glass shadow-soft p-intro m-overlap text-center">
+      <section id="gallerySection" class="rounded-xl2 border-line bg-white-glass shadow-soft p-intro m-overlap text-center">
         <div class="tracking-[0.2em] text-gray-400 text-sm mb-4 font-serif">PHOTO</div>
         <div class="justify-between mb-2">
           <div class="text-xl font-medium text-gray-800 mb-10 text-center font-bold">사진</div>
         </div>
 
-        <div>6월 중 업데이트 예정</div>
+        <!-- <div>6월 중 업데이트 예정</div> -->
         <div class="my-3 h-px bg-[rgba(20,18,16,.08)]"></div>
 
         <div class="grid grid-cols-2 gap-2.5">
           <div class="relative overflow-hidden rounded-[18px] border border-[rgba(20,18,16,.10)] bg-white/50 aspect-square">
-            <img class="w-full h-full object-cover block" src="src/image/IMG_0456.png" alt="g1">
+            <img class="w-full h-full object-cover block" src="src/image/1.jpg" alt="g1">
             <div class="pointer-events-none absolute inset-0 [background:linear-gradient(180deg,rgba(0,0,0,0)_60%,rgba(0,0,0,.18))]"></div>
           </div>
 
           <div class="relative overflow-hidden rounded-[18px] border border-[rgba(20,18,16,.10)] bg-white/50 aspect-square">
-            <img class="w-full h-full object-cover block" src="src/image/IMG_1688.png" alt="g2">
-            <div class="pointer-events-none absolute inset-0 [background:linear-gradient(180deg,rgba(0,0,0,0)_60%,rgba(0,0,0,.18))]"></div>
-          </div>
-
-          <!-- <div class="relative overflow-hidden rounded-[18px] border border-[rgba(20,18,16,.10)] bg-white/50 aspect-square">
-            <img class="w-full h-full object-cover block" src="src/image/IMG_5812.png" alt="g3">
+            <img class="w-full h-full object-cover block" src="src/image/3.jpg" alt="g2">
             <div class="pointer-events-none absolute inset-0 [background:linear-gradient(180deg,rgba(0,0,0,0)_60%,rgba(0,0,0,.18))]"></div>
           </div>
 
           <div class="relative overflow-hidden rounded-[18px] border border-[rgba(20,18,16,.10)] bg-white/50 aspect-square">
-            <img class="w-full h-full object-cover block" src="src/image/IMG_0346.png" alt="g4">
+            <img class="w-full h-full object-cover block" src="src/image/4.jpg" alt="g3">
             <div class="pointer-events-none absolute inset-0 [background:linear-gradient(180deg,rgba(0,0,0,0)_60%,rgba(0,0,0,.18))]"></div>
-          </div> -->
+          </div>
+
+          <div class="relative overflow-hidden rounded-[18px] border border-[rgba(20,18,16,.10)] bg-white/50 aspect-square">
+            <img class="w-full h-full object-cover block" src="src/image/5.jpg" alt="g4">
+            <div class="pointer-events-none absolute inset-0 [background:linear-gradient(180deg,rgba(0,0,0,0)_60%,rgba(0,0,0,.18))]"></div>
+          </div>
+
+          <div class="relative overflow-hidden rounded-[18px] border border-[rgba(20,18,16,.10)] bg-white/50 aspect-square">
+            <img class="w-full h-full object-cover block" src="src/image/6.jpg" alt="g5">
+            <div class="pointer-events-none absolute inset-0 [background:linear-gradient(180deg,rgba(0,0,0,0)_60%,rgba(0,0,0,.18))]"></div>
+          </div>
+
+          <div class="relative overflow-hidden rounded-[18px] border border-[rgba(20,18,16,.10)] bg-white/50 aspect-square">
+            <img class="w-full h-full object-cover block" src="src/image/7.jpg" alt="g6">
+            <div class="pointer-events-none absolute inset-0 [background:linear-gradient(180deg,rgba(0,0,0,0)_60%,rgba(0,0,0,.18))]"></div>
+          </div>
+
+          <div class="relative overflow-hidden rounded-[18px] border border-[rgba(20,18,16,.10)] bg-white/50 aspect-square">
+            <img class="w-full h-full object-cover block" src="src/image/8.jpg" alt="g7">
+            <div class="pointer-events-none absolute inset-0 [background:linear-gradient(180deg,rgba(0,0,0,0)_60%,rgba(0,0,0,.18))]"></div>
+          </div>
+
+          <div class="relative overflow-hidden rounded-[18px] border border-[rgba(20,18,16,.10)] bg-white/50 aspect-square">
+            <img class="w-full h-full object-cover block" src="src/image/9.jpg" alt="g8">
+            <div class="pointer-events-none absolute inset-0 [background:linear-gradient(180deg,rgba(0,0,0,0)_60%,rgba(0,0,0,.18))]"></div>
+          </div>
+
+          <div class="relative overflow-hidden rounded-[18px] border border-[rgba(20,18,16,.10)] bg-white/50 aspect-square">
+            <img class="w-full h-full object-cover block" src="src/image/13.jpg" alt="g9">
+            <div class="pointer-events-none absolute inset-0 [background:linear-gradient(180deg,rgba(0,0,0,0)_60%,rgba(0,0,0,.18))]"></div>
+          </div>
+
+  
+          <div class="relative overflow-hidden rounded-[18px] border border-[rgba(20,18,16,.10)] bg-white/50 aspect-square">
+            <img class="w-full h-full object-cover block" src="src/image/16.jpg" alt="g10">
+            <div class="pointer-events-none absolute inset-0 [background:linear-gradient(180deg,rgba(0,0,0,0)_60%,rgba(0,0,0,.18))]"></div>
+          </div>
+
+          <div class="relative overflow-hidden rounded-[18px] border border-[rgba(20,18,16,.10)] bg-white/50 aspect-square">
+            <img class="w-full h-full object-cover block" src="src/image/14.jpg" alt="g11">
+            <div class="pointer-events-none absolute inset-0 [background:linear-gradient(180deg,rgba(0,0,0,0)_60%,rgba(0,0,0,.18))]"></div>
+          </div>
+
+  
+          <div class="relative overflow-hidden rounded-[18px] border border-[rgba(20,18,16,.10)] bg-white/50 aspect-square">
+            <img class="w-full h-full object-cover block" src="src/image/17.jpg" alt="g12">
+            <div class="pointer-events-none absolute inset-0 [background:linear-gradient(180deg,rgba(0,0,0,0)_60%,rgba(0,0,0,.18))]"></div>
+          </div>
+
+          <div class="relative overflow-hidden rounded-[18px] border border-[rgba(20,18,16,.10)] bg-white/50 aspect-square">
+            <img class="w-full h-full object-cover block" src="src/image/15.jpg" alt="g13">
+            <div class="pointer-events-none absolute inset-0 [background:linear-gradient(180deg,rgba(0,0,0,0)_60%,rgba(0,0,0,.18))]"></div>
+          </div>
+
+  
+          <div class="relative overflow-hidden rounded-[18px] border border-[rgba(20,18,16,.10)] bg-white/50 aspect-square">
+            <img class="w-full h-full object-cover block" src="src/image/18.jpg" alt="g14">
+            <div class="pointer-events-none absolute inset-0 [background:linear-gradient(180deg,rgba(0,0,0,0)_60%,rgba(0,0,0,.18))]"></div>
+          </div>
         </div>
 
         
       </section>
+
+      <div id="galleryModal" class="gallery-modal" aria-hidden="true">
+        <div class="gallery-modal-content">
+          <button id="galleryCloseBtn" class="gallery-modal-close" type="button" aria-label="Close">×</button>
+          <button id="galleryPrevBtn" class="gallery-modal-prev" type="button" aria-label="Previous image">&lt;</button>
+          <img id="galleryModalImage" class="gallery-modal-image" src="" alt="사진 확대 보기" />
+          <button id="galleryNextBtn" class="gallery-modal-next" type="button" aria-label="Next image">&gt;</button>
+          <div id="galleryModalCaption" class="gallery-modal-caption"></div>
+        </div>
+      </div>
 
       <!-- CONTACT -->
       <section class="rounded-xl2 border-line bg-white-glass shadow-soft p-intro m-overlap text-center">
@@ -809,6 +950,67 @@
     // ESC 키로도 닫기
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') modal.classList.add('hidden');
+    });
+
+    // 갤러리 팝업
+    const gallerySection = document.getElementById('gallerySection');
+    const galleryModal = document.getElementById('galleryModal');
+    const galleryModalImage = document.getElementById('galleryModalImage');
+    const galleryModalCaption = document.getElementById('galleryModalCaption');
+    const galleryCloseBtn = document.getElementById('galleryCloseBtn');
+    const galleryPrevBtn = document.getElementById('galleryPrevBtn');
+    const galleryNextBtn = document.getElementById('galleryNextBtn');
+    const galleryImages = gallerySection ? Array.from(gallerySection.querySelectorAll('img')) : [];
+    let currentGalleryIndex = 0;
+
+    function updateGalleryModal(index) {
+      const item = galleryImages[index];
+      if (!item) return;
+      currentGalleryIndex = index;
+      galleryModalImage.src = item.src;
+      galleryModalCaption.textContent = `${index + 1} / ${galleryImages.length}`;
+      galleryModal.style.top = `${window.scrollY}px`;
+      galleryModal.classList.add('show');
+      galleryModal.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeGalleryModal() {
+      galleryModal.classList.remove('show');
+      galleryModal.setAttribute('aria-hidden', 'true');
+    }
+
+    galleryImages.forEach((img, index) => {
+      img.style.cursor = 'pointer';
+      img.addEventListener('click', () => updateGalleryModal(index));
+    });
+
+    galleryCloseBtn.addEventListener('click', closeGalleryModal);
+    galleryPrevBtn.addEventListener('click', () => {
+      const nextIndex = (currentGalleryIndex - 1 + galleryImages.length) % galleryImages.length;
+      updateGalleryModal(nextIndex);
+    });
+    galleryNextBtn.addEventListener('click', () => {
+      const nextIndex = (currentGalleryIndex + 1) % galleryImages.length;
+      updateGalleryModal(nextIndex);
+    });
+
+    galleryModal.addEventListener('click', (event) => {
+      if (event.target === galleryModal) {
+        closeGalleryModal();
+      }
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (!galleryModal.classList.contains('show')) return;
+      if (e.key === 'Escape') {
+        closeGalleryModal();
+      } else if (e.key === 'ArrowLeft') {
+        const prevIndex = (currentGalleryIndex - 1 + galleryImages.length) % galleryImages.length;
+        updateGalleryModal(prevIndex);
+      } else if (e.key === 'ArrowRight') {
+        const nextIndex = (currentGalleryIndex + 1) % galleryImages.length;
+        updateGalleryModal(nextIndex);
+      }
     });
   </script>
 
