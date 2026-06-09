@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var copyBrideFatherBank = document.getElementById('copyBrideFatherBank');
   var copyBrideMotherBank = document.getElementById('copyBrideMotherBank');
   var viewPhoto = document.getElementById('viewPhoto');
+  var commentWrite = document.getElementById('commentWrite');
 
   if (copyAddressButton) {
     copyAddressButton.addEventListener('click', function() {
@@ -73,6 +74,15 @@ document.addEventListener('DOMContentLoaded', function() {
       gtag('event', 'view_photo', {
         'event_category': 'view_photo',
         'event_label': '사진 보기'
+      });
+    });
+  }
+
+  if (commentWrite) {
+    commentWrite.addEventListener('click', function() {
+      gtag('event', 'comment_write', {
+        'event_category': 'comment_write',
+        'event_label': '방명록 작성'
       });
     });
   }
