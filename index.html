@@ -21,15 +21,15 @@
 
   <style>
     :root {
-      --summer-blue:  #C5E1A5;
-      --summer-blue-dark: #bdd8c7;
-      --summer-text: #a2be82;
-      --summer-muted: #C5E1A5;
-      --summer-border: #757575;
-      --summer-white-glass: #F1F8E9;
+      --summer-blue:  #fcede4;
+      --summer-blue-dark: #e9d4c5;
+      --summer-text: #cabaac;
+      --summer-muted: #dabeb1;
+      --summer-border: #f7eadb;
+      --summer-white-glass: #f8f2ed;
     }
     body {
-      background: #d2e0c2;
+      background: var(--summer-blue);
       min-height: 100vh;
     }
     .subtitle-kor {
@@ -82,7 +82,7 @@
       margin-top: 1rem;
       border-radius: 1.25rem;
       overflow: hidden;
-      background: #acc9b6;
+      background: var(--summer-blue-dark);
       box-shadow: 0 24px 60px rgba(20,18,16,0.15);
     }
     .gallery-modal-image {
@@ -208,9 +208,9 @@
 
       <!-- GROOM/BGIDE INFO -->
       <section class="rounded-xl2 border-line bg-white-glass shadow-soft p-intro m-overlap">
-        <div class="tracking-[0.2em] text-gray-400 text-sm mb-4 font-serif text-center">INVITATION</div>
+        <div class="tracking-[0.2em] text-gray-400 text-sm mb-4 font-serif text-center font-extrabold">INVITATION</div>
   
-          <h2 class="text-xl font-medium text-gray-800 mb-10 font-bold text-center">
+          <h2 class="text-xl font-extrabold text-gray-800 mb-10 font-bold text-center">
             소중한 분들을 초대합니다
           </h2>
 
@@ -245,9 +245,9 @@
 
       <!-- CALENDAR -->
       <section class="rounded-xl2 border-line bg-white-glass shadow-soft p-intro m-overlap text-center">
-        <div class="tracking-[0.2em] text-gray-400 text-sm mb-4 font-serif">DATE</div>
+        <div class="tracking-[0.2em] text-gray-400 text-sm mb-4 font-serif font-extrabold">DATE</div>
         <div class="justify-between mb-2">
-          <h2 class="text-xl font-medium text-gray-800 mb-10 font-bold">일정</h2>
+          <h2 class="text-xl font-extrabold text-gray-800 mb-10 font-bold">일정</h2>
         </div>
 
         <div class="px-2 pt-2 pb-1">
@@ -271,9 +271,9 @@
 
       <!-- LOCATION -->
       <section id="location" class="rounded-xl2 border-line bg-white-glass shadow-soft p-intro m-overlap text-center">
-        <div class="tracking-[0.2em] text-gray-400 text-sm mb-4 font-serif">LOCATION</div>
+        <div class="tracking-[0.2em] text-gray-400 text-sm mb-4 font-serif font-extrabold">LOCATION</div>
         <div class="justify-between mb-2">
-          <h2 class="text-xl font-medium text-gray-800 mb-10 font-bold">오시는 길</h2>
+          <h2 class="text-xl font-extrabold text-gray-800 mb-10 font-bold">오시는 길</h2>
         </div>
 
         <div class="text-sm text-muted">
@@ -361,9 +361,9 @@
 
       <!-- GALLERY -->
       <section id="gallerySection" class="rounded-xl2 border-line bg-white-glass shadow-soft p-intro m-overlap text-center">
-        <div class="tracking-[0.2em] text-gray-400 text-sm mb-4 font-serif">PHOTO</div>
+        <div class="tracking-[0.2em] text-gray-400 text-sm mb-4 font-serif font-extrabold">PHOTO</div>
         <div class="justify-between mb-2">
-          <div class="text-xl font-medium text-gray-800 mb-10 text-center font-bold">사진</div>
+          <div class="text-xl font-extrabold text-gray-800 mb-10 text-center font-bold">사진</div>
         </div>
 
         <!-- <div>6월 중 업데이트 예정</div> -->
@@ -459,9 +459,9 @@
 
       <!-- CONTACT -->
       <section class="rounded-xl2 border-line bg-white-glass shadow-soft p-intro m-overlap text-center">
-        <div class="tracking-[0.2em] text-gray-400 text-sm mb-4 font-serif">CONTACT</div>
+        <div class="tracking-[0.2em] text-gray-400 text-sm mb-4 font-serif font-extrabold">CONTACT</div>
         <div class="justify-between mb-2">
-          <div class="text-xl font-medium text-gray-800 mb-10 font-bold">연락처</div>
+          <div class="text-xl font-extrabold text-gray-800 mb-10 font-bold">연락처</div>
         </div>
 
         <div class="grid gap-2.5">
@@ -486,9 +486,9 @@
 
       <!-- SEND MESSAGE -->
       <section class="rounded-xl2 border-line bg-white-glass shadow-soft p-intro m-overlap text-center">
-        <div class="tracking-[0.2em] text-gray-400 text-sm mb-4 font-serif">SEND MESSAGE</div>
+        <div class="tracking-[0.2em] text-gray-400 text-sm mb-4 font-serif font-extrabold">SEND MESSAGE</div>
         <div class="justify-between mb-2">
-          <div class="text-xl font-medium text-gray-800 mb-10 font-bold">드리는 말씀</div>
+          <div class="text-xl font-extrabold text-gray-800 mb-10 font-bold">드리는 말씀</div>
         </div>
         <div class="items-baseline justify-center gap-2 text-base">
           <p class="m-0 text-muted leading-relaxed">
@@ -502,10 +502,10 @@
       <!-- COMMENT -->
       <section id="commentApp" class="rounded-xl2 border-line bg-white-glass shadow-soft p-intro m-overlap text-center">
         <div class="mb-8">
-          <div class="tracking-[0.2em] text-gray-400 text-sm mb-4 font-serif">GUEST BOOK</div>
+          <div class="tracking-[0.2em] text-gray-400 text-sm mb-4 font-serif font-extrabold">GUEST BOOK</div>
           <div class="flex items-center justify-between mb-3">
             <div></div>
-            <div class="text-xl font-medium text-gray-800 mb-10 font-bold">방명록</div>
+            <div class="text-xl font-extrabold text-gray-800 mb-10 font-bold">방명록</div>
             <span class="text-xs text-black/50">{{ comments.length }}개</span>
           </div>
 
@@ -661,9 +661,9 @@
 
       <!-- MONEY -->
       <section class="rounded-xl2 border-line bg-white-glass shadow-soft p-intro m-overlap text-center">
-        <div class="tracking-[0.2em] text-gray-400 text-sm mb-4 font-serif">ACCOUNT</div>
+        <div class="tracking-[0.2em] text-gray-400 text-sm mb-4 font-serif font-extrabold">ACCOUNT</div>
         <div class="justify-between mb-2">
-          <div class="text-xl font-medium text-gray-800 mb-10 font-bold">마음 전하실 곳</div>
+          <div class="text-xl text-gray-800 mb-10 font-bold">마음 전하실 곳</div>
         </div>
         <div class="m-0 text-muted leading-relaxed p-4">
           참석이 어려우신 분들을 위해 <br>
