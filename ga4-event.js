@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', function() {
   var callGroom = document.getElementById('callGroom');
   var callBride = document.getElementById('callBride');
   var copyGroomBank = document.getElementById('copyGroomBank');
+  var copyGroomFatherBank = document.getElementById('copyGroomFatherBank');
+  var copyGroomMotherBank = document.getElementById('copyGroomMotherBank');
   var copyBrideBank = document.getElementById('copyBrideBank');
   var copyBrideFatherBank = document.getElementById('copyBrideFatherBank');
   var copyBrideMotherBank = document.getElementById('copyBrideMotherBank');
@@ -41,6 +43,22 @@ document.addEventListener('DOMContentLoaded', function() {
       gtag('event', 'copy_groom_bank', {
         'event_category': 'copy_bank',
         'event_label': '신랑 계좌 복사 버튼 클릭'
+      });
+    });
+  }
+  if (copyGroomFatherBank) {
+    copyGroomFatherBank.addEventListener('click', function() {
+      gtag('event', 'copy_groom_father_bank', {
+        'event_category': 'copy_bank',
+        'event_label': '신부 부 계좌 복사 버튼 클릭'
+      });
+    });
+  }
+  if (copyGroomMotherBank) {
+    copyGroomMotherBank.addEventListener('click', function() {
+      gtag('event', 'copy_groom_mother_bank', {
+        'event_category': 'copy_bank',
+        'event_label': '신부 모 계좌 복사 버튼 클릭'
       });
     });
   }
