@@ -9,6 +9,10 @@
     gtag('js', new Date());
     gtag('config', 'G-K1DVG1S1N0');
   </script>
+  <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js"></script>
+  <script>
+    Kakao.init('142b0d4e3a0a5f79366df0b4dc20c02c');
+  </script>
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -762,6 +766,13 @@
         </div>
       </section>
 
+      <!-- KAKAO SHARE -->
+      <section class="text-center m-overlap">
+        <button id="kakaoShareBtn" type="button" class="btn-summer w-full py-3 flex items-center justify-center gap-2">
+          <span>💬</span> 카카오톡으로 공유하기
+        </button>
+      </section>
+
       <footer class="text-center text-xs text-muted py-4">
         © <span id="yy"></span> Wedding Invitation · Made for mobile
       </footer>
@@ -1310,5 +1321,55 @@
   }
   </script>
   <script src="ga4-event.js"></script>
+
+  <script>
+    // 카카오톡 공유하기
+    const kakaoShareBtn = document.getElementById('kakaoShareBtn');
+    if (kakaoShareBtn) {
+      kakaoShareBtn.addEventListener('click', () => {
+        if (!Kakao.isInitialized()) {
+          console.error('Kakao SDK가 초기화되지 않았습니다.');
+          return;
+        }
+
+        Kakao.Share.sendDefault({
+          objectType: 'feed',
+          content: {
+            title: '산 하나 결혼합니다.',
+            description: '2026.08.22 (토) 오후 5시\n고려대학교 교우회관',
+            imageUrl: 'https://sudo-marry.github.io/src/image/0.jpg',
+            link: {
+              mobileWebUrl: 'https://sudo-marry.github.io',
+              webUrl: 'https://sudo-marry.github.io'
+            }
+          },
+          buttons: [
+            {
+              title: '청첩장 보기',
+              link: {
+                mobileWebUrl: 'https://sudo-marry.github.io',
+                webUrl: 'https://sudo-marry.github.io'
+              }
+            },
+            {
+              title: '오시는 길',
+              link: {
+                mobileWebUrl: 'https://sudo-marry.github.io#location',
+                webUrl: 'https://sudo-marry.github.io#location'
+              }
+            }
+          ]
+        });
+
+        if (typeof gtag === 'function') {
+          gtag('event', 'kakao_share_click', {
+            event_category: 'share',
+            event_label: '카카오톡 공유 버튼 클릭'
+          });
+        }
+      });
+    }
+  </script>
+
 </body>
 </html>
