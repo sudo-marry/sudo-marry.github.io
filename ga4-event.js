@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var copyBrideMotherBank = document.getElementById('copyBrideMotherBank');
   var viewPhoto = document.getElementById('viewPhoto');
   var commentWrite = document.getElementById('commentWrite');
+  var kakaoShareBtn = document.getElementById('kakaoShareBtn');
 
   if (copyAddressButton) {
     copyAddressButton.addEventListener('click', function() {
@@ -101,6 +102,15 @@ document.addEventListener('DOMContentLoaded', function() {
       gtag('event', 'comment_write', {
         'event_category': 'comment_write',
         'event_label': '방명록 작성'
+      });
+    });
+  }
+
+  if (kakaoShareBtn) {
+    kakaoShareBtn.addEventListener('click', function() {
+      gtag('event', 'kakao_share_click', {
+        'event_category': 'share',
+        'event_label': '카카오톡 공유 버튼 클릭'
       });
     });
   }
