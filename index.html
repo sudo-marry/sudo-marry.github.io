@@ -672,7 +672,7 @@
       </section>
 
       <!-- MONEY -->
-      <section class="rounded-xl2 border-line bg-white-glass shadow-soft p-intro m-overlap text-center">
+      <section id="accountSection" class="rounded-xl2 border-line bg-white-glass shadow-soft p-intro m-overlap text-center">
         <div class="tracking-[0.2em] text-gray-400 text-sm mb-4 font-serif font-extrabold">ACCOUNT</div>
         <div class="justify-between mb-2">
           <div class="text-xl text-gray-800 mb-10 font-bold">마음 전하실 곳</div>
@@ -1368,6 +1368,17 @@
           });
         }
       });
+    }
+  </script>
+
+  <script>
+    // URL에 ?group=1 이 있으면 계좌 섹션 숨기기
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('group') === '1') {
+      const accountSection = document.getElementById('accountSection');
+      if (accountSection) {
+        accountSection.style.display = 'none';
+      }
     }
   </script>
 
