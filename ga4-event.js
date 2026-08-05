@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var viewPhoto = document.getElementById('viewPhoto');
   var commentWrite = document.getElementById('commentWrite');
   var kakaoShareBtn = document.getElementById('kakaoShareBtn');
+  var addguestsnap = document.getElementById('uploadSnapBtn');
 
   if (copyAddressButton) {
     copyAddressButton.addEventListener('click', function() {
@@ -109,6 +110,15 @@ document.addEventListener('DOMContentLoaded', function() {
   if (kakaoShareBtn) {
     kakaoShareBtn.addEventListener('click', function() {
       gtag('event', 'kakao_share_click', {
+        'event_category': 'share',
+        'event_label': '카카오톡 공유 버튼 클릭'
+      });
+    });
+  }
+
+  if (addguestsnap) {
+    addguestsnap.addEventListener('click', function() {
+      gtag('event', 'add_guest_snap', {
         'event_category': 'share',
         'event_label': '카카오톡 공유 버튼 클릭'
       });
